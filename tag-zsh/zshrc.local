@@ -1,0 +1,13 @@
+path+=('/usr/local/apache-ant/bin')
+
+export XML_CATALOG_FILES="/opt/boxen/homebrew/etc/xml/catalog"
+
+bindkey -M vicmd v edit-command-line
+
+plugins+=(lein)
+LEIN_FAST_TRAMPOLINE=y
+export LEIN_FAST_TRAMPOLINE
+alias cljsbuild="lein trampoline cljsbuild $@"
+
+export CLOJURESCRIPT_HOME="/Users/jake/gitrepos/clojurescript"
+path+=("$CLOJURESCRIPT_HOME/bin")

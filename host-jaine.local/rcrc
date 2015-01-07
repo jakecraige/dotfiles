@@ -1,0 +1,3 @@
+EXCLUDES='iterm README.md'
+TAGS='aliases haskell ios ruby tmux vim zsh'
+HOSTNAME='jaine.local'

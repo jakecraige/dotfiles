@@ -1,0 +1,96 @@
+call dirsettings#Install()
+
+iab teh the
+iab rials rails
+iab reuqire require
+iab availbility availability
+iab resposne response
+iab functino function
+iab retreive retrieve
+
+" Dash Plugin
+nmap <silent> <leader>d <Plug>DashSearch
+let g:dash_map = {
+    \ 'ruby'       : 'rails',
+    \ 'javascript' : 'emberjs',
+    \ 'coffee' : 'javascript'
+    \ }
+
+colorscheme seoul256
+set background=dark
+
+map <Leader>rm :call RunRubyMotion()<CR>
+
+function! RunRubyMotion()
+  call VimuxRunCommand('quit')
+  call VimuxRunCommand('rake')
+endfunction
+
+vmap <Leader>e :call EvalClojure()<CR>
+function! EvalClojure()
+  let selection = s:get_visual_selection()
+  call VimuxRunCommand(selection)
+endfunction
+
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
+
+let g:airline_powerline_fonts = 1
+let g:tmuxline_powerline_separators = 1
+
+" turn <h5 class="helper">There are no posts on the wall.</h5>
+" into:
+"  <h5 class="helper">
+"    There are no posts on the wall.
+"  </h5>
+nnoremap <leader>f cit<cr><esc>O<esc>pj=2k
+
+let maplocalleader = "\\"
+
+nmap cpl cp<S-V><CR>
+nmap cpf ggcpG<C-o><C-o>
+
+au FileType clojure let b:loaded_delimitMate = 0
+
+nnoremap <silent> n n:call HLNext(0.15)<cr>
+nnoremap <silent> N n:call HLNext(0.15)<cr>
+
+function! HLNext (blinktime)
+  set invcursorline
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  set invcursorline
+  redraw
+endfunction
+
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+" Remove any introduced trailing whitespace after moving... 
+let g:DVB_TrimWS = 1   
+
+" Add space when commenting
+let g:NERDSpaceDelims = 1
+
+nmap <Leader>hn <Plug>GitGutterNextHunk
+nmap <Leader>hp <Plug>GitGutterPrevHun
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterRevertHunk
+" hunk diff
+nmap <Leader>hd <Plug>GitGutterPreviewHunk
+
+set nowrap
+
+autocmd Filetype javascript map <leader>m :call RunCurrentSpecFile()<cr>
+autocmd Filetype javascript map <leader>M :call RunNearestSpec()<cr>
+autocmd Filetype javascript map <leader>rm :call RunLastSpec()<cr>
