@@ -8,3 +8,5 @@ alias 'pgrestart=pg_ctl -D /opt/boxen/data/postgresql-9.3/ restart'
 alias 'mongo=mongo --port 17017'
 
 alias 'nom=rm -rf node_modules && npm cache clean && npm install'
+
+alias vim=nvim

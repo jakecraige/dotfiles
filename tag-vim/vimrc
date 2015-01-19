@@ -1,3 +1,34 @@
+if filereadable(expand("~/.poetic_dotfiles/vimrc"))
+  source ~/.poetic_dotfiles/vimrc
+endif
+
+" Clojure
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-leiningen'
+"Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-obsession'
+" rainbow parentheses
+Plugin 'amdt/vim-niji' 
+" end clojure
+
+Plugin 'shinokada/dragvisuals.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'briancollins/vim-jst'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'geekjuice/vim-mocha'
+Plugin 'mantiz/vim-plugin-dirsettings'
+Plugin 'moll/vim-node'
+Plugin 'dag/vim2hs'
+Plugin 'mhinz/vim-hugefile'
+Plugin 'plasticboy/vim-markdown'
+
 call dirsettings#Install()
 
 iab teh the

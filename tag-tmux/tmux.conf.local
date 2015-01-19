@@ -1,5 +1,0 @@
-set -g status-right "Online: #{online_status} | %a %h-%d %H:%M "
-
-set -g @resurrect-processes 'irb node guard "~rails s" "~rails server" "~rails console" "~ember server" "~ember s" "~npm start"'
-
-set -g @resurrect-strategy-vim 'session'
