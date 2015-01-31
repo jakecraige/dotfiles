@@ -2,35 +2,6 @@ if filereadable(expand("~/.poetic_dotfiles/vimrc"))
   source ~/.poetic_dotfiles/vimrc
 endif
 
-" Clojure
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
-"Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-obsession'
-" rainbow parentheses
-Plugin 'amdt/vim-niji' 
-" end clojure
-
-Plugin 'shinokada/dragvisuals.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'briancollins/vim-jst'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'geekjuice/vim-mocha'
-Plugin 'mantiz/vim-plugin-dirsettings'
-Plugin 'moll/vim-node'
-Plugin 'dag/vim2hs'
-Plugin 'mhinz/vim-hugefile'
-Plugin 'plasticboy/vim-markdown'
-
-call dirsettings#Install()
-
 iab teh the
 iab rials rails
 iab reuqire require
@@ -38,14 +9,6 @@ iab availbility availability
 iab resposne response
 iab functino function
 iab retreive retrieve
-
-" Dash Plugin
-nmap <silent> <leader>d <Plug>DashSearch
-let g:dash_map = {
-    \ 'ruby'       : 'rails',
-    \ 'javascript' : 'emberjs',
-    \ 'coffee' : 'javascript'
-    \ }
 
 colorscheme seoul256
 set background=dark
@@ -121,7 +84,21 @@ nmap <Leader>hr <Plug>GitGutterRevertHunk
 nmap <Leader>hd <Plug>GitGutterPreviewHunk
 
 set nowrap
+set gdefault " replace all instances on a line in search/replace
 
-autocmd Filetype javascript map <leader>m :call RunCurrentSpecFile()<cr>
-autocmd Filetype javascript map <leader>M :call RunNearestSpec()<cr>
-autocmd Filetype javascript map <leader>rm :call RunLastSpec()<cr>
+autocmd Filetype javascript map <Leader>t :call RunCurrentSpecFile()<CR>
+autocmd Filetype javascript map <Leader>s :call RunNearestSpec()<CR>
+autocmd Filetype javascript map <Leader>l :call RunLastSpec()<CR>
+autocmd Filetype javascript map <Leader>a :call RunAllSpecs()<CR>  
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+autocmd FileType markdown setlocal spell
+autocmd FileType markdown setlocal textwidth=80
+
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+let g:mocha_js_command = "Dispatch mocha {spec}"
+
+nmap <Leader>D :Dispatch 

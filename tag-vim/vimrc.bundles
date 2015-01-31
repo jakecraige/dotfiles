@@ -1,0 +1,12 @@
+Plug 'dag/vim2hs', { 'for': 'haskell' }
+
+Plug 'shinokada/dragvisuals.vim'
+Plug 'mxw/vim-jsx'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+Plug 'mantiz/vim-plugin-dirsettings'
+
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
