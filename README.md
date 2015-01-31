@@ -15,3 +15,18 @@ rcup -B jaine.local -v -x iterm -x README && rcup -B jaine.local -v
 - List what will be symlinked with `lsrc -v`
 - rcup is run twice so that it links the .rcrc first, then the second run sets
   up the rest of the dotfiles
+
+## Setup new machine
+
+1. Setup core dev environment
+
+```sh
+xcode-select --install
+curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
+sh mac 2>&1 | tee ~/laptop.log
+```
+
+2. Install app store apps
+  - Xcode
+  - BetterSnapTool
+
