@@ -1,0 +1,15 @@
+[submodule "powerline"]
+	path = powerline
+	url = https://github.com/Lokaltog/powerline.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "tpm"]
+	path = tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
+	path = zsh_custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

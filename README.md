@@ -1,15 +1,11 @@
 # Dotfiles
 
-This is build on top of the base dotfiles found at
-[poetic/dotfiles](https://github.com/poetic/dotfiles).
-
 This repo uses [rcm](https://github.com/thoughtbot/rcm) to manage it's dotfiles
 
 ## Installation
 Clone repo into `~/.dotfiles` and setup symlinks with `rcup`
 
 ```sh
-git clone https://github.com/poetic/dotfiles ~/.poetic_dotfiles
 git clone https://github.com/jakecraige/dotfiles ~/.dotfiles
 rcup -B jaine.local -v -x iterm -x README && rcup -B jaine.local -v
 ```

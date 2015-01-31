@@ -11,14 +11,6 @@ git_clone_or_pull() {
   fi
 }
 
-git_clone_or_pull_and_checkout() {
-  local LOCALREPO=$2
-  git_clone_or_pull "$1" "$2"
-  pushd $LOCALREPO
-  git checkout "$3"
-  popd
-}
-
 brew_cask_expand_alias() {
   brew cask info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
 }
@@ -74,27 +66,28 @@ brew_cask_install_or_upgrate 'vlc'
 brew_install_or_upgrade 'android-sdk'
 brew_install_or_upgrade 'autojump'
 brew_install_or_upgrade 'chromedriver'
-brew_install_or_upgrade 'drush'
 brew_install_or_upgrade 'elasticsearch'
 brew_install_or_upgrade 'elixir'
 brew_install_or_upgrade 'hub'
-brew_install_or_upgrade 'ios-sim'
-brew_install_or_upgrade 'ios-deploy'
 brew_install_or_upgrade 'leiningen'
 brew_install_or_upgrade 'mongodb'
 brew_install_or_upgrade 'neovim'
-brew_install_or_upgrade 'php55'
 brew_install_or_upgrade 'wget'
 brew_install_or_upgrade 'ngrok'
 brew_install_or_upgrade 'shellcheck'
 brew_install_or_upgrade 'phantomjs'
 brew_install_or_upgrade 'nvm'
-brew_install_or_upgrade 'tmuxinator'
 brew_install_or_upgrade 'cmake'
+
+# Drupal
+brew install php55 --without-snmp
+brew_install_or_upgrade 'composer'
+brew install --HEAD drush
 
 gem_install_or_update 'rails'
 gem_install_or_update 'parity'
 gem_install_or_update 'suspenders'
+gem_install_or_update 'tmuxinator'
 
 npm install -g grunt grunt-cli
 npm install -g ember-cli
@@ -116,7 +109,6 @@ mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-git_clone_or_pull_and_checkout 'https://github.com/poetic/dotfiles' '~/.poetic_dotfiles', 'plug'
 git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '~/.dotfiles'
 
 rcup -B jaine.local -v -x iterm -x README && rcup -B jaine.local -v

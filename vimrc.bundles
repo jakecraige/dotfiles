@@ -1,0 +1,87 @@
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
+
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
+
+Plug 'tpope/vim-cucumber'
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'junegunn/seoul256.vim'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'baskerville/bubblegum'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dhruvasagar/vim-railscasts-theme'
+
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'kien/ctrlp.vim'
+Plug 'godlygeek/tabular'
+" webapi required for gists
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'spf13/PIV', { 'for': 'php' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+
+" for snipmate
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
+
+Plug 'majutsushi/tagbar'
+Plug 'Raimondi/delimitMate'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'duff/vim-scratch'
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'mustache/vim-mode', { 'for': 'handlebars' }
+
+" Dash
+Plug 'rizzatti/funcoo.vim'
+Plug 'rizzatti/dash.vim'
+
+Plug 'bling/vim-airline'
+Plug 'sjl/gundo.vim'
+Plug 'dockyard/vim-easydir'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'amdt/vim-niji', { 'for': 'clojure' } " rainbow parentheses
+Plug 'dag/vim2hs', { 'for': 'haskell' }
+
+Plug 'shinokada/dragvisuals.vim'
+Plug 'mxw/vim-jsx'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+Plug 'mantiz/vim-plugin-dirsettings'
+
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
