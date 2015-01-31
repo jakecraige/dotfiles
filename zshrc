@@ -1,7 +1,8 @@
 export EDITOR="vim"
 export SHELL="/bin/zsh"
 
-source ~/.nvm/nvm.sh
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 ZSH=$HOME/.dotfiles/oh-my-zsh
 ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom

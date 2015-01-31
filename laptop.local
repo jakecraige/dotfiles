@@ -71,18 +71,22 @@ brew_install_or_upgrade 'elixir'
 brew_install_or_upgrade 'hub'
 brew_install_or_upgrade 'leiningen'
 brew_install_or_upgrade 'mongodb'
-brew_install_or_upgrade 'neovim'
 brew_install_or_upgrade 'wget'
 brew_install_or_upgrade 'ngrok'
 brew_install_or_upgrade 'shellcheck'
 brew_install_or_upgrade 'phantomjs'
 brew_install_or_upgrade 'nvm'
 brew_install_or_upgrade 'cmake'
+brew tap neovim/homebrew-neovim
+brew install neovim --HEAD
 
 # Drupal
+brew tap homebrew/dupes
+brew tap homebrew/versions
+brew tap homebrew/php
 brew install php55 --without-snmp
 brew_install_or_upgrade 'composer'
-brew install --HEAD drush
+brew install drush --HEAD
 
 gem_install_or_update 'rails'
 gem_install_or_update 'parity'
@@ -95,15 +99,16 @@ npm install -g bower
 npm install -g gulp
 npm install -g cordova
 
-mkdir ~/Work
-mkdir ~/Work/apps
-mkdir ~/Work/archived
-mkdir ~/Work/internal
-mkdir ~/Work/open-source
-mkdir ~/Work/presentations
-mkdir ~/Work/research
-mkdir ~/Development
-mkdir ~/gitrepos
+mkdir -p ~/.nvm
+mkdir -p ~/Work
+mkdir -p ~/Work/apps
+mkdir -p ~/Work/archived
+mkdir -p ~/Work/internal
+mkdir -p ~/Work/open-source
+mkdir -p ~/Work/presentations
+mkdir -p ~/Work/research
+mkdir -p ~/Development
+mkdir -p ~/gitrepos
 
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim \
@@ -111,9 +116,8 @@ curl -fLo ~/.vim/autoload/plug.vim \
 
 git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '~/.dotfiles'
 
-rcup -B jaine.local -v -x iterm -x README && rcup -B jaine.local -v
+ln -sf ~/.dotfiles/rcrc ~/.rcrc
+ln -sf ~/.vim ~/.nvim
+ln -sf ~/.vimrc ~/.nvimrc
+rcup -v
 
-vim +PlugInstall +qall
-
-ln -s ~/.vim ~/.nvim
-ln -s ~/.vimrc ~/.nvimrc
