@@ -1,0 +1,109 @@
+git_clone_or_pull() {
+  local REPOSRC=$1
+  local LOCALREPO=$2
+  local LOCALREPO_VC_DIR=$LOCALREPO/.git
+  if [[ ! -d "$LOCALREPO_VC_DIR" ]]; then
+    git clone --recursive $REPOSRC $LOCALREPO
+  else
+    pushd $LOCALREPO
+    git pull $REPOSRC && git submodule update --init --recursive
+    popd
+  fi
+}
+
+brew_cask_expand_alias() {
+  brew cask info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
+}
+
+brew_cask_is_installed() {
+  local NAME=$(brew_cask_expand_alias "$1")
+  brew cask list -1 | grep -Fqx "$NAME"
+}
+
+brew_cask_install() {
+  if ! brew_cask_is_installed "$1"; then
+    brew cask install "$@"
+  fi
+}
+
+brew_cask_install_or_upgrade() {
+  if brew_cask_is_installed "$1"; then
+    echo "$1 is already installed, brew cask upgrade is not yet implemented"
+  else
+    brew cask install "$@"
+  fi
+}
+
+brew tap caskroom/cask
+brew_install_or_upgrade 'brew-cask'
+
+brew_cask_install_or_upgrate 'google-chrome'
+brew_cask_install_or_upgrate 'firefox'
+brew_cask_install_or_upgrate 'private-internet-access'
+brew_cask_install_or_upgrate 'utorrent'
+brew_cask_install_or_upgrate 'dropbox'
+brew_cask_install_or_upgrate 'vagrant'
+brew_cask_install_or_upgrate 'virtualbox'
+brew_cask_install_or_upgrate 'iterm2'
+brew_cask_install_or_upgrate 'dash'
+brew_cask_install_or_upgrate 'java'
+brew_cask_install_or_upgrate 'slack'
+brew_cask_install_or_upgrate 'alfred'
+brew_cask_install_or_upgrate 'spotify'
+brew_cask_install_or_upgrate 'xquartz'
+brew_cask_install_or_upgrate 'limechat'
+brew_cask_install_or_upgrate 'flux'
+brew_cask_install_or_upgrate 'sourcetree'
+brew_cask_install_or_upgrate 'evernote'
+brew_cask_install_or_upgrate 'skitch'
+brew_cask_install_or_upgrate 'transmit'
+brew_cask_install_or_upgrate '1password'
+brew_cask_install_or_upgrate 'sublime-text'
+brew_cask_install_or_upgrate 'fluid'
+brew_cask_install_or_upgrate 'silverlight'
+brew_cask_install_or_upgrate 'vlc'
+
+brew_install_or_upgrade 'android-sdk'
+brew_install_or_upgrade 'autojump'
+brew_install_or_upgrade 'chromedriver'
+brew_install_or_upgrade 'drush'
+brew_install_or_upgrade 'elasticsearch'
+brew_install_or_upgrade 'elixir'
+brew_install_or_upgrade 'hub'
+brew_install_or_upgrade 'ios-sim'
+brew_install_or_upgrade 'ios-deploy'
+brew_install_or_upgrade 'leiningen'
+brew_install_or_upgrade 'mongodb'
+brew_install_or_upgrade 'neovim'
+brew_install_or_upgrade 'php55'
+brew_install_or_upgrade 'wget'
+brew_install_or_upgrade 'ngrok'
+brew_install_or_upgrade 'shellcheck'
+brew_install_or_upgrade 'phantomjs'
+brew_install_or_upgrade 'nvm'
+brew_install_or_upgrade 'tmuxinator'
+brew_install_or_upgrade 'cmake'
+
+gem_install_or_update 'rails'
+gem_install_or_update 'parity'
+gem_install_or_update 'suspenders'
+
+npm install -g grunt grunt-cli
+npm install -g ember-cli
+npm install -g bower
+npm install -g gulp
+npm install -g cordova
+
+mkdir ~/Work
+mkdir ~/Work/apps
+mkdir ~/Work/archived
+mkdir ~/Work/internal
+mkdir ~/Work/open-source
+mkdir ~/Work/presentations
+mkdir ~/Work/research
+mkdir ~/Development
+mkdir ~/gitrepos
+
+git_clone_or_pull 'https://github.com/poetic/dotfiles' '~/.poetic_dotfiles'
+git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '~/.dotfiles'
+rcup -B jaine.local -v -x iterm -x README && rcup -B jaine.local -v
