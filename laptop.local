@@ -122,9 +122,9 @@ gem_install_or_update 'suspenders'
 gem_install_or_update 'tmuxinator'
 
 source $(brew --prefix nvm)/nvm.sh
-nvm install v0.10.36
-nvm install iojs-v1.0.4
-nvm alias default v0.10.36
+nvm install stable
+nvm install iojs
+nvm alias default stable
 
 npm install -g npm
 npm install -g grunt grunt-cli
