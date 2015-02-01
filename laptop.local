@@ -88,17 +88,6 @@ brew install php55 --without-snmp
 brew_install_or_upgrade 'composer'
 brew install drush --HEAD
 
-gem_install_or_update 'rails'
-gem_install_or_update 'parity'
-gem_install_or_update 'suspenders'
-gem_install_or_update 'tmuxinator'
-
-npm install -g grunt grunt-cli
-npm install -g ember-cli
-npm install -g bower
-npm install -g gulp
-npm install -g cordova
-
 mkdir -p ~/.nvm
 mkdir -p ~/Work
 mkdir -p ~/Work/apps
@@ -110,14 +99,36 @@ mkdir -p ~/Work/research
 mkdir -p ~/Development
 mkdir -p ~/gitrepos
 
-mkdir -p ~/.vim/autoload
-curl -fLo ~/.vim/autoload/plug.vim \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '~/.dotfiles'
+git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '.dotfiles'
 
 ln -sf ~/.dotfiles/rcrc ~/.rcrc
 ln -sf ~/.vim ~/.nvim
 ln -sf ~/.vimrc ~/.nvimrc
+
 rcup -v
 
+mkdir -p ~/.vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+sudo easy_install pip
+chown -R $USER /Library/Python/2.7/site-packages
+chown -R $USER /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7
+pip install neovim
+
+gem_install_or_update 'rails'
+gem_install_or_update 'parity'
+gem_install_or_update 'suspenders'
+gem_install_or_update 'tmuxinator'
+
+source $(brew --prefix nvm)/nvm.sh
+nvm install v0.10.36
+nvm install iojs-v1.0.4
+nvm alias default v0.10.36
+
+npm install -g npm
+npm install -g grunt grunt-cli
+npm install -g ember-cli
+npm install -g bower
+npm install -g gulp
+npm install -g cordova
