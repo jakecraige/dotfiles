@@ -1,6 +1,10 @@
 export EDITOR="vim"
 export SHELL="/bin/zsh"
 
+export PATH="$HOME/.bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+eval "$(rbenv init - zsh --no-rehash)"
+
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
