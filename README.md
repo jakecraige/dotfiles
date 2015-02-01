@@ -20,8 +20,7 @@ rcup -v
 1. Get laptop local file
 
 ```sh
-curl https://raw.githubusercontent.com/jakecraige/dotfiles/master/laptop.local
-> ~/.laptop.local
+curl https://raw.githubusercontent.com/jakecraige/dotfiles/master/laptop.local > ~/.laptop.local
 ```
 
 2. Setup core dev environment
