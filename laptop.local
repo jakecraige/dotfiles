@@ -123,8 +123,8 @@ gem_install_or_update 'tmuxinator'
 
 source $(brew --prefix nvm)/nvm.sh
 nvm install stable
-nvm install iojs
 nvm alias default stable
+nvm use stable
 
 npm install -g npm
 npm install -g grunt grunt-cli
