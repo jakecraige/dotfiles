@@ -1,38 +1,26 @@
 export EDITOR="vim"
 export SHELL="/bin/zsh"
-
-export PATH="$HOME/.bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-eval "$(rbenv init - zsh --no-rehash)"
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
-ZSH=$HOME/.dotfiles/oh-my-zsh
-ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
-
-ZSH_THEME="poetic"
-DISABLE_AUTO_TITLE="true"
-
-plugins=(git osx rails brew bower bundle gem vim gem npm tmux tmuxinator autojump zsh-syntax-highlighting jsontools)
-source $ZSH/oh-my-zsh.sh
-
+export PATH="/usr/local/bin:$HOME/.bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-
-# Default to standard vi bindings, regardless of editor stringj
-# / to do backward search
-bindkey -v
-bindkey "jj" vi-cmd-mode
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd v edit-command-line
-
-plugins+=(lein)
+export NVM_DIR=~/.nvm
 LEIN_FAST_TRAMPOLINE=y
 export LEIN_FAST_TRAMPOLINE
-alias cljsbuild="lein trampoline cljsbuild $@"
+ZSH=$HOME/.dotfiles/oh-my-zsh
+ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
+ZSH_THEME="poetic"
+DISABLE_AUTO_TITLE="true"
+path+=("$HOME/.dotfiles/powerline/scripts")
 
-# export CLOJURESCRIPT_HOME="/Users/jake/gitrepos/clojurescript"
-# path+=("$CLOJURESCRIPT_HOME/bin")
+plugins=(git osx brew autojump zsh-syntax-highlighting ssh-agent lein)
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_rsa github_rsa
+
+source $ZSH/oh-my-zsh.sh
+
+eval "$(rbenv init - zsh --no-rehash)"
+source $(brew --prefix nvm)/nvm.sh
 
 [[ -f ~/.aliases ]] && source ~/.aliases
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn

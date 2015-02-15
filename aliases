@@ -1,4 +1,6 @@
 alias nom='rm -rf node_modules && npm cache clean && npm install'
+alias vim='nvim'
+alias cljsbuild="lein trampoline cljsbuild $@"
 
 # -------------------------------------------------------------------
 # General

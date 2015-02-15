@@ -63,7 +63,6 @@ brew_cask_install_or_upgrade 'fluid'
 brew_cask_install_or_upgrade 'silverlight'
 brew_cask_install_or_upgrade 'vlc'
 
-brew_install_or_upgrade 'android-sdk'
 brew_install_or_upgrade 'autojump'
 brew_install_or_upgrade 'chromedriver'
 brew_install_or_upgrade 'elasticsearch'
@@ -79,14 +78,6 @@ brew_install_or_upgrade 'nvm'
 brew_install_or_upgrade 'cmake'
 brew tap neovim/homebrew-neovim
 brew install neovim --HEAD
-
-# Drupal
-brew tap homebrew/dupes
-brew tap homebrew/versions
-brew tap homebrew/php
-brew install php55 --without-snmp
-brew_install_or_upgrade 'composer'
-brew install drush --HEAD
 
 mkdir -p ~/.nvm
 mkdir -p ~/Work
@@ -126,4 +117,10 @@ npm install -g grunt grunt-cli
 npm install -g ember-cli
 npm install -g bower
 npm install -g gulp
-npm install -g cordova
+npm install -g avn avn-nvm
+
+defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+
+brew_install_or_upgrade 'emacs'
+# Emacs Prelude
+curl -L http://git.io/epre | sh

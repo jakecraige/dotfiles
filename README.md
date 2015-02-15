@@ -17,13 +17,13 @@ rcup -v
 
 ## Setup new machine
 
-1. Get laptop local file
+- Get laptop local file
 
 ```sh
 curl https://raw.githubusercontent.com/jakecraige/dotfiles/master/laptop.local > ~/.laptop.local
 ```
 
-2. Setup core dev environment
+- Setup core dev environment
 
 ```sh
 xcode-select --install
@@ -32,7 +32,14 @@ sh mac 2>&1 | tee ~/laptop.log
 vim +PlugInstall +qall
 ```
 
-3. Install app store apps
+- Install app store apps
   - Xcode
   - BetterSnapTool
 
+- Setup prefs / backups
+  - Alfred
+  - Iterm
+  - 1Password
+  - Chome Login to accounts
+
+- [Install powerline fonts](https://github.com/powerline/fonts)

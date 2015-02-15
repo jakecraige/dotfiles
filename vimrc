@@ -372,7 +372,7 @@
       let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
     " }}}
     " TagBar {{{
-        let g:tagbar_ctags_bin = '/opt/boxen/homebrew/bin/ctags'
+        let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
     " }}}
     " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
@@ -419,6 +419,7 @@
   iab resposne response
   iab functino function
   iab retreive retrieve
+  iab reutrn return
 " }}}
 
 colorscheme seoul256
