@@ -422,7 +422,7 @@
   iab reutrn return
 " }}}
 
-colorscheme seoul256
+colorscheme base16-default
 set background=dark
 
 map <Leader>rm :call RunRubyMotion()<CR>

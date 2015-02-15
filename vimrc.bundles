@@ -25,6 +25,7 @@ Plug 'vim-scripts/xoria256.vim'
 Plug 'baskerville/bubblegum'
 Plug 'altercation/vim-colors-solarized'
 Plug 'dhruvasagar/vim-railscasts-theme'
+Plug 'chriskempson/base16-vim'
 
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
