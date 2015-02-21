@@ -30,3 +30,5 @@
 [user]
 	name = Jake Craige
 	email = james.craige@gmail.com
+[credential]
+	helper = osxkeychain
