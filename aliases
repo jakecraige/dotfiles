@@ -1,5 +1,4 @@
 alias nom='rm -rf node_modules && npm cache clean && npm install'
-alias vim='nvim'
 alias cljsbuild="lein trampoline cljsbuild $@"
 
 # -------------------------------------------------------------------
@@ -50,7 +49,7 @@ alias find_port='lsof -i ' # what is running on port, find_port :3000
 # stage them for you
 alias gitclean='git ls-files --deleted -z | xargs -0 git rm'
 alias ga='git add'
-alias gpl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gpl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --graph"
 alias gs='git status'
 alias gm='git commit -m'
 alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort -nr'
@@ -62,7 +61,7 @@ alias gituntrackdir="git rm -r --cached "
 # -------------------------------------------------------------------
 alias spring='nocorrect spring'
 alias ag='nocorrect ag'
-alias rspec='nocorrect rspec'
+# alias rspec='nocorrect rspec'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers
@@ -72,4 +71,11 @@ alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
 alias gu="git shortlog | grep -E '^[^ ]'"
 
 # list out your computers local ip address
-alias myip="ifconfig | ack 'inet (\d+.*) netmask .* broadcast'"
+alias myip="ifconfig | ag 'inet (\d+.*) netmask .* broadcast'"
+alias fuxcode="rm -rf ~/Library/Developer/Xcode/DerivedData/"
+alias openxp="open *.xcodeproj"
+alias openxc="open *.xcworkspace"
+
+alias vim=nvim
+
+alias fuck='$(thefuck $(fc -ln -1))'

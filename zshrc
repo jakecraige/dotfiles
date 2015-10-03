@@ -1,6 +1,6 @@
 export EDITOR="vim"
 export SHELL="/bin/zsh"
-export PATH="/usr/local/bin:$HOME/.bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export NVM_DIR=~/.nvm
@@ -15,12 +15,17 @@ path+=("$HOME/.dotfiles/powerline/scripts")
 plugins=(git osx brew autojump zsh-syntax-highlighting ssh-agent lein)
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_rsa github_rsa
+zstyle :omz:plugins:ssh-agent identities id_rsa
 
 source $ZSH/oh-my-zsh.sh
 
 eval "$(rbenv init - zsh --no-rehash)"
 source $(brew --prefix nvm)/nvm.sh
 
+# https://github.com/neovim/neovim/issues/2048
+# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
+# eval "tic ~/$TERM.ti"
+
+export PATH=".git/safe/../../bin:$PATH"
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn

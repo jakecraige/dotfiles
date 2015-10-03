@@ -8,16 +8,18 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'keith/swift.vim'
+Plug 'gfontenot/vim-xcodebuild'
 
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 
 Plug 'tpope/vim-cucumber'
-Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'junegunn/seoul256.vim'
@@ -67,6 +69,8 @@ Plug 'sjl/gundo.vim'
 Plug 'dockyard/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'elixir-lang/vim-elixir'
+
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
@@ -84,5 +88,13 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 Plug 'mantiz/vim-plugin-dirsettings'
 
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
+Plug 'moll/vim-node'
+" Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
+Plug 'vim-scripts/visSum.vim'
+Plug 'pbrisbin/vim-runfile'
+Plug 'navicore/vissort.vim'
+
+Plug 'christoomey/vim-conflicted'
+Plug 'idanarye/vim-merginal'
+Plug 'justinmk/vim-sneak'
+" Plug 'milkypostman/vim-togglelist'

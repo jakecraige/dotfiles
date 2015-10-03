@@ -110,6 +110,7 @@ gem_install_or_update 'rails'
 gem_install_or_update 'parity'
 gem_install_or_update 'suspenders'
 gem_install_or_update 'tmuxinator'
+gem_install_or_update 'cocoapods' --user-install
 
 npm install -g npm
 npm install -g grunt grunt-cli

@@ -1,7 +1,6 @@
 " Setup {{{
   set nocompatible
   filetype off
-
   " Plugins, managed with vim-plug (https://github.com/junegunn/vim-plug)
   " Run `:PlugInstall` to install or update
   call plug#begin('~/.vim/plugged')
@@ -14,14 +13,21 @@
 
   filetype on
   filetype plugin indent on
+
+  call dirsettings#Install()
+
 " }}}
 " Language Specific {{{
     " keep you honest and without tabs
-    autocmd BufWritePre * :retab
+    " autocmd BufWritePre * :retab
     " Javascript {{{
         augroup ft_javascript
           au!
           au Filetype javascript setlocal foldmethod=syntax
+        augroup END
+        augroup ft_json
+          au!
+          au Filetype json setlocal foldmethod=syntax
         augroup END
     " }}}
     " Ruby {{{
@@ -156,7 +162,6 @@
       set lines=40                " 40 lines of text instead of 24
     else
       set t_Co=256
-      set term=screen-256color
       set background=dark
       colorscheme railscasts
     endif
@@ -237,6 +242,14 @@
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+
+    if has('nvim')
+      tnoremap <C-h> <C-\><C-n><C-w>h
+      tnoremap <C-j> <C-\><C-n><C-w>j
+      tnoremap <C-k> <C-\><C-n><C-w>k
+      tnoremap <C-l> <C-\><C-n><C-w>l
+      tnoremap <Esc> <C-\><C-n>
+    endif
 
     "Split window size mapping
     nnoremap <S-Up> :resize +5<CR>
@@ -337,7 +350,7 @@
     " CtrlP {{{
       set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms|bower_components|cassettes)$'
+      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms|bower_components|cassettes|coverage)$'
     " }}}
     " NERDTree {{{
         map <C-e> :NERDTreeToggle<CR>
@@ -376,7 +389,18 @@
     " }}}
     " Syntastic {{{
         let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
-        let g:syntastic_quiet_messages = {'level': 'warnings'}
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 2
+        let g:syntastic_check_on_wq = 0
+        let g:syntastic_javascript_checkers = ['eslint']
+        " https://github.com/eslint/eslint/issues/1238#issuecomment-139471958
+        let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+        if matchstr(local_eslint, "^\/\\w") == ''
+          let local_eslint = getcwd() . "/" . local_eslint
+        endif
+        if executable(local_eslint)
+          let g:syntastic_javascript_eslint_exec = local_eslint
+        endif
     " }}}
     " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
@@ -386,7 +410,7 @@
       map <Leader>s :call RunNearestSpec()<CR>
       map <Leader>l :call RunLastSpec()<CR>
       map <Leader>a :call RunAllSpecs()<CR>  
-      let g:rspec_command = "Dispatch rspec {spec}"
+      let g:rspec_command = "Dispatch bundle exec rspec {spec}"
     " }}}
 
 " }}}
@@ -396,7 +420,7 @@
   nnoremap <f9> mzggg?G`z
 
   " Trim whitespace on save
-  function! <SID>StripTrailingWhitespaces()
+  function! StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -408,7 +432,7 @@
     call cursor(l, c)
   endfunction
 
-  autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call <SID>StripTrailingWhitespaces()
+  autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call StripTrailingWhitespaces()
 " }}}
 
 " Spelling Mistakes {{{
@@ -417,12 +441,17 @@
   iab reuqire require
   iab availbility availability
   iab resposne response
+  iab reponse response
   iab functino function
   iab retreive retrieve
   iab reutrn return
+  iab reponse response
+  iab guaranto guarantor
+  iab encryped encrypted
 " }}}
 
-colorscheme base16-default
+" colorscheme base16-default
+colorscheme seoul256
 set background=dark
 
 map <Leader>rm :call RunRubyMotion()<CR>
@@ -514,3 +543,41 @@ inoremap kj <ESC>
 let g:mocha_js_command = "Dispatch mocha {spec}"
 
 nmap <Leader>D :Dispatch 
+
+" Fix escape not working correctly in neovim
+" https://github.com/neovim/neovim/issues/2051#issuecomment-75767873
+set timeout
+set timeoutlen=750
+set ttimeoutlen=250
+if !has('nvim')
+  set ttimeout
+  set ttimeoutlen=0
+endif
+
+let g:runfile_by_name    = {
+  \   'Gemfile$': '!bundle',
+  \   'Spec\.hs$': '!echo :main | cabal exec -- ghci -Wall %',
+  \   '.*_spec\.rb': '!bundle exec rspec %',
+  \   '.*\.cabal': '!cabal install --dependencies-only --enable-tests',
+  \   '\.md$': '!opandoc %',
+  \   '\.tex$': '!pdflatex %'
+  \ }
+let g:runfile_by_type    = {
+  \ 'haskell': '!cabal exec -- ghci -Wall %',
+  \ 'lhaskell': '!cabal exec -- ghci -Wall %'
+  \ }
+
+
+if has('nvim')
+  tnoremap <A-h> <C-\><C-n><C-w>h
+  tnoremap <A-j> <C-\><C-n><C-w>j
+  tnoremap <A-k> <C-\><C-n><C-w>k
+  tnoremap <A-l> <C-\><C-n><C-w>l
+  nnoremap <A-h> <C-w>h
+  nnoremap <A-j> <C-w>j
+  nnoremap <A-k> <C-w>k
+  nnoremap <A-l> <C-w>l
+endif
+
+nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
