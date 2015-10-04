@@ -16,7 +16,6 @@
   up = !git fetch origin && git rebase origin/master
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
   merge-pr = !merge-pr $1
-
 [core]
   autocrlf = input
   excludesfile = /Users/jakecraige/.gitignore_global
@@ -24,12 +23,6 @@
   ff = only
 [hub]
   protocol = https
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [user]
   name = Jake Craige
   email = james.craige@gmail.com
