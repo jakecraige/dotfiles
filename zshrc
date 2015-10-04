@@ -22,10 +22,6 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init - zsh --no-rehash)"
 source $(brew --prefix nvm)/nvm.sh
 
-# https://github.com/neovim/neovim/issues/2048
-# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
-# eval "tic ~/$TERM.ti"
-
 export PATH=".git/safe/../../bin:$PATH"
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn

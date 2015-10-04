@@ -409,8 +409,17 @@
       map <Leader>t :call RunCurrentSpecFile()<CR>
       map <Leader>s :call RunNearestSpec()<CR>
       map <Leader>l :call RunLastSpec()<CR>
-      map <Leader>a :call RunAllSpecs()<CR>  
+      map <Leader>a :call RunAllSpecs()<CR>
       let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+    " }}}
+    " Airline {{{
+      let g:airline_theme="base16"
+      let g:airline_left_sep=""
+      let g:airline_right_sep=""
+      let g:airline_section_b = ""
+      let g:airline_section_x = ""
+      let g:airline_section_z = "%l:%v"
+      let g:airline_section_y = ""
     " }}}
 
 " }}}
@@ -477,9 +486,6 @@ function! s:get_visual_selection()
   return join(lines, "\n")
 endfunction
 
-let g:airline_powerline_fonts = 1
-let g:tmuxline_powerline_separators = 1
-
 " turn <h5 class="helper">There are no posts on the wall.</h5>
 " into:
 "  <h5 class="helper">
@@ -511,8 +517,8 @@ vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
 vmap  <expr>  D        DVB_Duplicate()
 
-" Remove any introduced trailing whitespace after moving... 
-let g:DVB_TrimWS = 1   
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
 
 " Add space when commenting
 let g:NERDSpaceDelims = 1
@@ -530,7 +536,7 @@ set gdefault " replace all instances on a line in search/replace
 autocmd Filetype javascript map <Leader>t :call RunCurrentSpecFile()<CR>
 autocmd Filetype javascript map <Leader>s :call RunNearestSpec()<CR>
 autocmd Filetype javascript map <Leader>l :call RunLastSpec()<CR>
-autocmd Filetype javascript map <Leader>a :call RunAllSpecs()<CR>  
+autocmd Filetype javascript map <Leader>a :call RunAllSpecs()<CR>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -542,7 +548,7 @@ inoremap kj <ESC>
 
 let g:mocha_js_command = "Dispatch mocha {spec}"
 
-nmap <Leader>D :Dispatch 
+nmap <Leader>D :Dispatch
 
 " Fix escape not working correctly in neovim
 " https://github.com/neovim/neovim/issues/2051#issuecomment-75767873

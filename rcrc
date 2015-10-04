@@ -1,1 +1,1 @@
-EXCLUDES='iterm README.md oh-my-zsh powerline tpm zsh_custom'
+EXCLUDES='iterm README.md oh-my-zsh tpm zsh_custom'
