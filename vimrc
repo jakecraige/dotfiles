@@ -45,6 +45,12 @@
           au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
       augroup END
     " }}}
+    " Ruby {{{
+        augroup ft_objcpp
+          au!
+          au Filetype ruby setlocal foldmethod=syntax
+        augroup END
+    " }}}
 " }}}
 " General make life easy settings {{{
       let mapleader = ","
@@ -349,8 +355,12 @@
 " Plugins {{{
     " CtrlP {{{
       set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+      nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+      set grepprg=ag\ --nogroup\ --nocolor
 
       let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms|bower_components|cassettes|coverage)$'
+      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+      let g:ctrlp_use_caching = 0
     " }}}
     " NERDTree {{{
         map <C-e> :NERDTreeToggle<CR>
@@ -420,6 +430,9 @@
       let g:airline_section_x = ""
       let g:airline_section_z = "%l:%v"
       let g:airline_section_y = ""
+    " }}}
+    " Xcodebuild {{{
+      let g:xcodebuild_run_command = 'Dispatch {cmd}'
     " }}}
 
 " }}}
@@ -539,6 +552,7 @@ autocmd Filetype javascript map <Leader>l :call RunLastSpec()<CR>
 autocmd Filetype javascript map <Leader>a :call RunAllSpecs()<CR>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.mm set filetype=objcpp
 
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown setlocal textwidth=80
@@ -584,6 +598,3 @@ if has('nvim')
   nnoremap <A-k> <C-w>k
   nnoremap <A-l> <C-w>l
 endif
-
-nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
-" nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>

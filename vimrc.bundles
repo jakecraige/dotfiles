@@ -29,9 +29,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'dhruvasagar/vim-railscasts-theme'
 Plug 'chriskempson/base16-vim'
 
-Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rking/ag.vim' " for ctrl-p
 Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
 " webapi required for gists
@@ -48,7 +46,6 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 
 Plug 'majutsushi/tagbar'
@@ -59,10 +56,6 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'duff/vim-scratch'
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'mustache/vim-mode', { 'for': 'handlebars' }
-
-" Dash
-Plug 'rizzatti/funcoo.vim'
-Plug 'rizzatti/dash.vim'
 
 Plug 'bling/vim-airline'
 Plug 'sjl/gundo.vim'
@@ -94,7 +87,4 @@ Plug 'vim-scripts/visSum.vim'
 Plug 'pbrisbin/vim-runfile'
 Plug 'navicore/vissort.vim'
 
-Plug 'christoomey/vim-conflicted'
-Plug 'idanarye/vim-merginal'
-Plug 'justinmk/vim-sneak'
 " Plug 'milkypostman/vim-togglelist'
