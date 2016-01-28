@@ -22,6 +22,10 @@ source "$ZSH/oh-my-zsh.sh"
 
 eval "$(rbenv init - zsh --no-rehash)"
 source "$(brew --prefix nvm)/nvm.sh"
+source "$HOME/.zshrc.private"
+
+# swift OSS
+# export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
 
 export PATH=".git/safe/../../bin:$PATH"
 [[ -f ~/.aliases ]] && source ~/.aliases

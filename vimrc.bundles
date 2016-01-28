@@ -8,12 +8,15 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 
+Plug 'lambdatoast/elm.vim'
+
 Plug 'vim-ruby/vim-ruby'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars' }
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'keith/swift.vim'
 Plug 'gfontenot/vim-xcodebuild'
+Plug 'nvie/vim-flake8'
 
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
@@ -38,7 +41,7 @@ Plug 'mattn/gist-vim'
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'spf13/PIV', { 'for': 'php' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 

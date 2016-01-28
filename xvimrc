@@ -1,3 +1,4 @@
+set blinkcursor
 nmap S i<cr><esc><right>
 nmap 0 0^
 nmap <C-h> <C-w>h

@@ -397,20 +397,18 @@
     " TagBar {{{
         let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
     " }}}
-    " Syntastic {{{
-        let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", "<pt-", "<template"] "]
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 2
-        let g:syntastic_check_on_wq = 0
-        let g:syntastic_javascript_checkers = ['eslint']
+    " Neomake {{{
         " https://github.com/eslint/eslint/issues/1238#issuecomment-139471958
         let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
         if matchstr(local_eslint, "^\/\\w") == ''
           let local_eslint = getcwd() . "/" . local_eslint
         endif
         if executable(local_eslint)
-          let g:syntastic_javascript_eslint_exec = local_eslint
+          let g:neomake_javascript_eslint_exe = local_eslint
         endif
+        let g:neomake_javascript_enabled_makers = ['eslint']
+        autocmd! BufReadPost * Neomake
+        autocmd! BufWritePost * Neomake
     " }}}
     " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
