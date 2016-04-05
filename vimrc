@@ -68,8 +68,8 @@
       set hidden
       set wildmode=list:longest
       set visualbell
-      set cursorline
-      set cursorcolumn
+      " set cursorline
+      " set cursorcolumn
       set ttyfast               " fast scrolling...
       set list
       set relativenumber
@@ -88,6 +88,7 @@
       set history=1000
       set laststatus=2
       set matchtime=3
+      set exrc "local vimrc
 
       command! Q q " Bind :Q to :q
       command! Qall qall
@@ -470,9 +471,11 @@
   iab encryped encrypted
 " }}}
 
-" colorscheme base16-default
 colorscheme seoul256
 set background=dark
+" colorscheme bubblegum-256-light
+" set background=light
+" colorscheme bubblegum-256-dark
 
 map <Leader>rm :call RunRubyMotion()<CR>
 
