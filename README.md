@@ -43,3 +43,5 @@ vim +PlugInstall +qall
   - Chome Login to accounts
 
 - [Install powerline fonts](https://github.com/powerline/fonts)
+
+Test signed commit!
