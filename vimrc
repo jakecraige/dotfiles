@@ -355,11 +355,11 @@
 " }}}
 " Plugins {{{
     " CtrlP {{{
-      set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+      set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/Assets/*
       nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
       set grepprg=ag\ --nogroup\ --nocolor
 
-      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(node_modules|dist|tmp|platforms|bower_components|cassettes|coverage)$'
+      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(Assets|node_modules|dist|tmp|platforms|bower_components|cassettes|coverage)$'
       let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
       let g:ctrlp_use_caching = 0
     " }}}
