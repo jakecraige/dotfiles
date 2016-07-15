@@ -60,7 +60,8 @@ Plug 'duff/vim-scratch'
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'mustache/vim-mode', { 'for': 'handlebars' }
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'sjl/gundo.vim'
 Plug 'dockyard/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
