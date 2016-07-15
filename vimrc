@@ -431,9 +431,16 @@
       let g:airline_section_y = ""
     " }}}
     " Xcodebuild {{{
-      let g:xcodebuild_run_command = 'Dispatch {cmd}'
+      let g:xcode_run_command = 'Dispatch! {cmd}'
     " }}}
-
+    " Deoplete {{{
+      let g:deoplete#enable_at_startup = 1
+    " }}}
+    " NeoSnippet {{{
+      imap <C-k> <Plug>(neosnippet_expand_or_jump)
+      smap <C-k> <Plug>(neosnippet_expand_or_jump)
+      xmap <C-k> <Plug>(neosnippet_expand_target)
+    " }}}
 " }}}
 " Uncategorized {{{
 
