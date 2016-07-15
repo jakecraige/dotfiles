@@ -1,8 +1,6 @@
 " Setup {{{
   set nocompatible
   filetype off
-  " Plugins, managed with vim-plug (https://github.com/junegunn/vim-plug)
-  " Run `:PlugInstall` to install or update
   call plug#begin('~/.vim/plugged')
 
   if filereadable(expand("~/.vimrc.bundles"))
@@ -68,8 +66,6 @@
       set hidden
       set wildmode=list:longest
       set visualbell
-      " set cursorline
-      " set cursorcolumn
       set ttyfast               " fast scrolling...
       set list
       set relativenumber
@@ -98,12 +94,8 @@
 
 " }}}
 " Make Life Easy Bindings {{{
-
       " S in normal mode to split line, sister to J
       nnoremap S i<cr><esc><right>
-
-      " Post to gist and copy in clipboard
-      vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
 
       "For when you forget to sudo.. Really Write the file.
         cmap w!! w !sudo tee % >/dev/null
@@ -114,15 +106,8 @@
       "Rehighlight pasted text
         nnoremap <leader>v V`]
 
-      "Save a keystroke
-
-      "Bind jj to ESC for quicker switching modes
-
       "0 now goes to first char in line instead of blank"
         nnoremap 0 0^
-
-      "Hit f2 to go into pastemode
-      :set pastetoggle=<F2>
 
 " }}}
 " Folding {{{
@@ -161,7 +146,6 @@
     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
     if has('gui_running')
-      colorscheme cobalt
       " removes scrollbar and toolbar"
       set guioptions+=lrb
       set guioptions-=lrb           " Remove the toolbar
@@ -169,8 +153,6 @@
       set lines=40                " 40 lines of text instead of 24
     else
       set t_Co=256
-      set background=dark
-      colorscheme railscasts
     endif
 
     " Font , Text, Tabs {{{
@@ -178,7 +160,6 @@
         " Auto format comment blocks
         set comments=sl:/*,mb:*,elx:*/
 
-        set guifont=Inconsolata\ 13
         "Set tabs to 2 spaces instead of the default 4
           set tabstop=2
           set shiftwidth=2
@@ -191,12 +172,6 @@
           set colorcolumn=+1
 
     " }}}
-
-" }}}
-" Quick Edit Common Files {{{
-
-    nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc.local<cr>
-    nnoremap <leader>ez <C-w><C-v><C-l>:e ~/.zshrc.local<cr>
 
 " }}}
 " File Editing {{{
@@ -229,11 +204,6 @@
   augroup END
 " }}}
 " Navigation {{{
-
-  " Change Working Directory to that of the current file
-    cmap cwd lcd %:p:h
-    cmap cd. lcd %:p:h
-
   "Visual shifting (does not exit Visual mode on tab)
     vnoremap < <gv
     vnoremap > >gv
@@ -283,12 +253,6 @@
       set smartcase
       set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
       set hlsearch
-
-      " highlighted in visual mode, any in normal
-      " nnoremap <leader>s :%s//gc<left><left><left>
-      " nnoremap <leader>sa :%s//g<left><left>
-      " vnoremap <leader>s "hy:%s/<C-r>h//gc<left><left><left>
-      " vnoremap <leader>sa "hy:%s/<C-r>h//g<left><left>
 
       "Undo highlignted searches
       nnoremap <leader><space> :noh<cr>
@@ -378,22 +342,10 @@
         let NERDTreeMapJumpFirstChild = 'gK'
     " }}}
     " Sparkup {{{
-
       let g:sparkupExecuteMapping = '<leader>h'
-
-    " }}}
-    " Tabular {{{
-      nmap <Leader>a= :Tabularize /=<CR>
-      vmap <Leader>a= :Tabularize /=<CR>
-      nmap <Leader>a: :Tabularize /:\zs<CR>
-      vmap <Leader>a: :Tabularize /:\zs<CR>
-      nmap <Leader>a> :Tabularize /=><CR>
-      vmap <Leader>a> :Tabularize /=><CR>
-      nmap <Leader>a\ :Tabularize /\|<CR>
-      vmap <Leader>a\ :Tabularize /\|<CR>
     " }}}
     " Ag {{{
-      let g:agprg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
+      let g:ag_prg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
     " }}}
     " TagBar {{{
         let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
@@ -460,7 +412,7 @@
     call cursor(l, c)
   endfunction
 
-  autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb :call StripTrailingWhitespaces()
+  autocmd BufWritePre *.py,*.js,*.rb,Gemfile,*.haml,*.erb,*.swift :call StripTrailingWhitespaces()
 " }}}
 
 " Spelling Mistakes {{{
@@ -480,16 +432,6 @@
 
 colorscheme seoul256
 set background=dark
-" colorscheme bubblegum-256-light
-" set background=light
-" colorscheme bubblegum-256-dark
-
-map <Leader>rm :call RunRubyMotion()<CR>
-
-function! RunRubyMotion()
-  call VimuxRunCommand('quit')
-  call VimuxRunCommand('rake')
-endfunction
 
 vmap <Leader>e :call EvalClojure()<CR>
 function! EvalClojure()
@@ -532,15 +474,6 @@ function! HLNext (blinktime)
   redraw
 endfunction
 
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
-
-" Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS = 1
-
 " Add space when commenting
 let g:NERDSpaceDelims = 1
 
@@ -564,9 +497,6 @@ autocmd BufNewFile,BufReadPost *.mm set filetype=objcpp
 
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown setlocal textwidth=80
-
-inoremap jk <ESC>
-inoremap kj <ESC>
 
 let g:mocha_js_command = "Dispatch mocha {spec}"
 
