@@ -13,6 +13,7 @@ export ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
 export ZSH_THEME="poetic"
 export DISABLE_AUTO_TITLE="true"
 export ANDROID_HOME=/usr/local/opt/android-sdk
+export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
 
 plugins=(git osx brew autojump zsh-syntax-highlighting ssh-agent lein)
 
