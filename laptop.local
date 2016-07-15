@@ -76,7 +76,7 @@ brew_install_or_upgrade 'phantomjs'
 brew_install_or_upgrade 'nvm'
 brew_install_or_upgrade 'cmake'
 brew tap neovim/homebrew-neovim
-brew install neovim --HEAD
+brew install neovim
 
 mkdir -p ~/.nvm
 mkdir -p ~/Work
