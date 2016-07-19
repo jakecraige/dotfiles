@@ -383,7 +383,7 @@
       let g:airline_section_y = ""
     " }}}
     " Xcodebuild {{{
-      let g:xcode_run_command = 'Dispatch! {cmd}'
+      let g:xcode_runner_command = 'Dispatch {cmd}'
     " }}}
     " Deoplete {{{
       let g:deoplete#enable_at_startup = 1
