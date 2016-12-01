@@ -512,6 +512,8 @@ if !has('nvim')
   set ttimeoutlen=0
 endif
 
+set tags=.git/tags,./tags
+
 let g:runfile_by_name    = {
   \   'Gemfile$': '!bundle',
   \   'Spec\.hs$': '!echo :main | cabal exec -- ghci -Wall %',

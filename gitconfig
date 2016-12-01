@@ -6,7 +6,7 @@
 [alias]
   amend = commit --amend --reuse-message HEAD
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  ca = commit --amend
+  ca = commit --amend -v
   ci = commit -v
   co = checkout
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
@@ -18,6 +18,8 @@
   undo = !git reset HEAD^
   up = !git fetch origin && git rebase origin/master
   dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+  pr = !git push && hub compare
+  ctags = !.git/hooks/ctags
 
 [apply]
   whitespace = warn
@@ -37,6 +39,9 @@
 
 [credential]
   helper = osxkeychain
+
+[credential "https://github.com"]
+  username = jakecraige
 
 [difftool]
   prompt = false
@@ -61,3 +66,5 @@
 
 [diff-so-fancy]
   markEmptyLines = false
+[init]
+	templatedir = ~/.git_template
