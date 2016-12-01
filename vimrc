@@ -319,7 +319,7 @@
 " }}}
 " Plugins {{{
     " CtrlP {{{
-      set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/Assets/*
+      set wildignore+=*/.hg/*,*/.svn/*,*/Assets/*
       nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
       set grepprg=ag\ --nogroup\ --nocolor
 
@@ -425,9 +425,10 @@
   iab functino function
   iab retreive retrieve
   iab reutrn return
-  iab reponse response
   iab guaranto guarantor
   iab encryped encrypted
+  iab relatinoship relationship
+  iab relatnoship relationship
 " }}}
 
 colorscheme seoul256

@@ -17,7 +17,9 @@ endfunction
   Plug 'kien/ctrlp.vim'
   Plug 'majutsushi/tagbar'
   Plug 'mantiz/vim-plugin-dirsettings'
-  Plug 'neovim/node-host' " parinfer plugin uses this
+  if has('nvim')
+    Plug 'neovim/node-host' " parinfer plugin uses this
+  endif
   Plug 'pbrisbin/vim-runfile'
   Plug 'rking/ag.vim'
   Plug 'scrooloose/nerdcommenter'
@@ -44,10 +46,10 @@ endfunction
     Plug 'lambdatoast/elm.vim'
     Plug 'mustache/vim-mode', { 'for': 'handlebars' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'handlebars' }
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'mxw/vim-jsx', { 'for': 'javascript' }
     Plug 'nvie/vim-flake8', { 'for': 'python' }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
     Plug 'slim-template/vim-slim', { 'for': 'slim' }
