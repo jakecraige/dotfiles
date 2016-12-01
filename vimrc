@@ -376,6 +376,13 @@
       map <Leader>a :call RunAllSpecs()<CR>
       let g:rspec_command = "Dispatch bundle exec rspec {spec}"
     " }}}
+    " vim-ex_test {{{
+      " map <Leader>t :call RunCurrentTestFile()<CR>
+      " map <Leader>s :call RunNearestTest()<CR>
+      " map <Leader>l :call RunLastTest()<CR>
+      " map <Leader>a :call RunAllTests()<CR>
+      let g:ex_test_command = "Dispatch mix test {test}"
+    " }}}
     " Airline {{{
       let g:airline_theme="base16"
       let g:airline_left_sep=""
