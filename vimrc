@@ -19,6 +19,8 @@
     " keep you honest and without tabs
     " autocmd BufWritePre * :retab
     " Javascript {{{
+        let g:jsx_ext_required = 0
+        let g:javascript_plugin_flow = 1
         augroup ft_javascript
           au!
           au Filetype javascript setlocal foldmethod=syntax
@@ -359,7 +361,8 @@
         if executable(local_eslint)
           let g:neomake_javascript_eslint_exe = local_eslint
         endif
-        let g:neomake_javascript_enabled_makers = ['eslint']
+        let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+        let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
         autocmd! BufReadPost * Neomake
         autocmd! BufWritePost * Neomake
     " }}}
