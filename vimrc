@@ -441,8 +441,10 @@
   iab relatnoship relationship
 " }}}
 
-colorscheme seoul256
-set background=dark
+" colorscheme seoul256
+" set background=dark
+colorscheme bubblegum-256-light
+set background=light
 
 vmap <Leader>e :call EvalClojure()<CR>
 function! EvalClojure()
