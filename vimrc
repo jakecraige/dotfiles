@@ -360,7 +360,17 @@
         endif
         if executable(local_eslint)
           let g:neomake_javascript_eslint_exe = local_eslint
+          let g:neomake_jsx_eslint_exe = local_eslint
         endif
+        let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+        if matchstr(local_flow, "^\/\\w") == ''
+          let local_flow = getcwd() . "/" . local_flow
+        endif
+        if executable(local_flow)
+          let g:neomake_javascript_flow_exe = local_flow
+          let g:neomake_jsx_flow_exe = local_flow
+        endif
+
         let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
         let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
         autocmd! BufReadPost * Neomake
