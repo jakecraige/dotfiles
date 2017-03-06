@@ -370,17 +370,18 @@
       let g:mustache_abbreviations = 1
     " }}}
     " vim-rspec {{{
-      map <Leader>t :call RunCurrentSpecFile()<CR>
-      map <Leader>s :call RunNearestSpec()<CR>
-      map <Leader>l :call RunLastSpec()<CR>
-      map <Leader>a :call RunAllSpecs()<CR>
+      autocmd Filetype ruby map <Leader>t :call RunCurrentSpecFile()<CR>
+      autocmd Filetype ruby map <Leader>s :call RunNearestSpec()<CR>
+      autocmd Filetype ruby map <Leader>l :call RunLastSpec()<CR>
+      autocmd Filetype ruby map <Leader>a :call RunAllSpecs()<CR>
       let g:rspec_command = "Dispatch bundle exec rspec {spec}"
     " }}}
     " vim-ex_test {{{
-      " map <Leader>t :call RunCurrentTestFile()<CR>
-      " map <Leader>s :call RunNearestTest()<CR>
-      " map <Leader>l :call RunLastTest()<CR>
-      " map <Leader>a :call RunAllTests()<CR>
+    "
+      autocmd Filetype elixir map <Leader>t :call RunCurrentTestFile()<CR>
+      autocmd Filetype elixir map <Leader>s :call RunNearestTest()<CR>
+      autocmd Filetype elixir map <Leader>l :call RunLastTest()<CR>
+      autocmd Filetype elixir map <Leader>a :call RunAllTests()<CR>
       let g:ex_test_command = "Dispatch mix test {test}"
     " }}}
     " Airline {{{
