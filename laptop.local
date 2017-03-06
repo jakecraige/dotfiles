@@ -53,10 +53,8 @@ brew_cask_install_or_upgrade 'spotify'
 brew_cask_install_or_upgrade 'xquartz'
 brew_cask_install_or_upgrade 'limechat'
 brew_cask_install_or_upgrade 'flux'
-brew_cask_install_or_upgrade 'sourcetree'
 brew_cask_install_or_upgrade 'evernote'
 brew_cask_install_or_upgrade 'skitch'
-brew_cask_install_or_upgrade 'transmit'
 brew_cask_install_or_upgrade '1password'
 brew_cask_install_or_upgrade 'sublime-text'
 brew_cask_install_or_upgrade 'fluid'
@@ -66,19 +64,19 @@ brew_cask_install_or_upgrade 'vlc'
 brew_install_or_upgrade 'autojump'
 brew_install_or_upgrade 'chromedriver'
 brew_install_or_upgrade 'elasticsearch'
-brew_install_or_upgrade 'elixir'
 brew_install_or_upgrade 'leiningen'
 brew_install_or_upgrade 'mongodb'
 brew_install_or_upgrade 'wget'
+brew_install_or_upgrade 'tree'
 brew_install_or_upgrade 'ngrok'
 brew_install_or_upgrade 'shellcheck'
 brew_install_or_upgrade 'phantomjs'
-brew_install_or_upgrade 'nvm'
 brew_install_or_upgrade 'cmake'
+brew_install_or_upgrade 'yarn'
+brew_install_or_upgrade 'parity'
 brew tap neovim/homebrew-neovim
 brew install neovim
 
-mkdir -p ~/.nvm
 mkdir -p ~/Work
 mkdir -p ~/Work/apps
 mkdir -p ~/Work/archived
@@ -86,7 +84,6 @@ mkdir -p ~/Work/internal
 mkdir -p ~/Work/open-source
 mkdir -p ~/Work/presentations
 mkdir -p ~/Work/research
-mkdir -p ~/Development
 mkdir -p ~/gitrepos
 
 git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '.dotfiles'
@@ -107,19 +104,18 @@ sudo chown -R $USER /System/Library/Frameworks/Python.framework/Versions/2.7/inc
 pip install neovim
 
 gem_install_or_update 'rails'
-gem_install_or_update 'parity'
 gem_install_or_update 'suspenders'
 gem_install_or_update 'tmuxinator'
 gem_install_or_update 'cocoapods' --user-install
 
 npm install -g npm
-npm install -g grunt grunt-cli
-npm install -g ember-cli
-npm install -g bower
-npm install -g gulp
-npm install -g avn avn-nvm
 
 defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 
 brew_install_or_upgrade 'emacs'
 # Emacs Prelude
