@@ -450,6 +450,8 @@
   iab encryped encrypted
   iab relatinoship relationship
   iab relatnoship relationship
+  iab desposit deposit
+  iab desposits deposits
 " }}}
 
 " colorscheme seoul256
