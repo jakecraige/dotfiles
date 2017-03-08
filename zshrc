@@ -31,6 +31,11 @@ autoload bashcompinit
 bashcompinit
 source "$HOME/.asdf/completions/asdf.bash"
 
+# load custom executable functions
+for function in ~/.zsh/functions/*; do
+  source $function
+done
+
 # swift OSS
 # export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
 
