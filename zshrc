@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 export EDITOR="nvim"
+# export NPM_CONFIG_PREFIX="/usr/local"
 export SHELL="/bin/zsh"
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 export CLICOLOR=1
@@ -13,6 +14,7 @@ export ZSH_THEME="poetic"
 export DISABLE_AUTO_TITLE="true"
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH="$PATH:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools"
+export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:`yarn global bin`"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
 
@@ -25,7 +27,6 @@ source "$ZSH/oh-my-zsh.sh"
 
 eval "$(rbenv init - zsh --no-rehash)"
 source "$HOME/.zshrc.private"
-export PATH="$PATH:$HOME/.asdf/bin:$HOME/.asdf/shims"
 
 autoload bashcompinit
 bashcompinit
@@ -35,9 +36,6 @@ source "$HOME/.asdf/completions/asdf.bash"
 for function in ~/.zsh/functions/*; do
   source $function
 done
-
-# swift OSS
-# export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
 
 export PATH=".git/safe/../../bin:$PATH"
 [[ -f ~/.aliases ]] && source ~/.aliases

@@ -24,6 +24,7 @@ alias be='bundle exec'
 alias rials='rails'
 alias raisl='rails'
 alias rs='rails s'
+alias tial='tail'
 
 # -------------------------------------------------------------------
 # directory movement
