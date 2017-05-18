@@ -17,6 +17,8 @@ export PATH="$PATH:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools"
 export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:`yarn global bin`"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
+# Temp attempt to fix listen issue https://github.com/rails/rails/issues/26158
+export DISABLE_SPRING=1
 
 plugins=(git osx brew autojump zsh-syntax-highlighting ssh-agent lein)
 

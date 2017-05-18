@@ -386,6 +386,13 @@
       autocmd Filetype ruby map <Leader>a :call RunAllSpecs()<CR>
       let g:rspec_command = "Dispatch bundle exec rspec {spec}"
     " }}}
+    " vim-flow {{{
+      let g:flow#enable = 0
+      " let g:flow#autoclose = 1
+      " if executable(local_flow)
+        " let g:flow#flowpath = local_flow
+      " endif
+    " }}}
     " vim-ex_test {{{
     "
       autocmd Filetype elixir map <Leader>t :call RunCurrentTestFile()<CR>

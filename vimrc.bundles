@@ -8,6 +8,7 @@ endfunction
   Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'airblade/vim-gitgutter'
   Plug 'benekastah/neomake'
   Plug 'christoomey/vim-tmux-navigator'
@@ -60,6 +61,10 @@ endfunction
     Plug 'tpope/vim-haml', { 'for': 'haml' }
     Plug 'tpope/vim-rails'
     Plug 'vim-ruby/vim-ruby'
+    Plug 'kchmck/vim-coffee-script'
+
+    Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
   " }}}
 
   " Utility {{{
@@ -74,6 +79,7 @@ endfunction
     Plug 'thoughtbot/vim-rspec'
     Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
     Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+    Plug 'flowtype/vim-flow'
   " }}}
 " }}}
 " Theming {{{
