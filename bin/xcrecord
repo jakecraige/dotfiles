@@ -1,0 +1,35 @@
+#!/bin/sh
+
+output=$1
+tmp_file=$(mktemp)
+name=$(basename "$0")
+
+show_usage() {
+  echo "usage: $name file ..."
+}
+
+show_version() {
+  echo "$name version 1.0.0"
+}
+
+xcrecord() {
+  xcrun simctl io booted recordVideo "$tmp_file"
+
+  ffmpeg -i "$tmp_file" -vf scale="w=-1:h=480:force_original_aspect_ratio=decrease" -r 10 -f gif - \
+    | gifsicle --optimize=3 > "$output"
+
+  rm -r "$tmp_file"
+}
+
+case $1 in
+  -v|--version|version)
+    show_version
+    exit
+    ;;
+  ?*)
+    xcrecord
+    ;;
+  *)
+    show_usage
+    ;;
+esac
