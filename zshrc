@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-export EDITOR="nvim"
 # export NPM_CONFIG_PREFIX="/usr/local"
+export EDITOR="vim"
 export SHELL="/bin/zsh"
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 export CLICOLOR=1

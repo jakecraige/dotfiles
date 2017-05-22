@@ -77,5 +77,4 @@ alias fuxcode="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias openxp="open *.xcodeproj"
 alias openxc="open *.xcworkspace"
 
-alias vim=nvim
 alias chrome="/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
