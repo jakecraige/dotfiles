@@ -35,62 +35,49 @@ brew_cask_install_or_upgrade() {
 }
 
 brew tap caskroom/cask
-brew_install_or_upgrade 'brew-cask'
 
 brew_cask_install_or_upgrade 'google-chrome'
 brew_cask_install_or_upgrade 'firefox'
 brew_cask_install_or_upgrade 'private-internet-access'
-brew_cask_install_or_upgrade 'utorrent'
 brew_cask_install_or_upgrade 'dropbox'
-brew_cask_install_or_upgrade 'vagrant'
 brew_cask_install_or_upgrade 'virtualbox'
 brew_cask_install_or_upgrade 'iterm2'
 brew_cask_install_or_upgrade 'dash'
 brew_cask_install_or_upgrade 'java'
+brew_cask_install_or_upgrade 'android-sdk'
 brew_cask_install_or_upgrade 'slack'
 brew_cask_install_or_upgrade 'alfred'
 brew_cask_install_or_upgrade 'spotify'
 brew_cask_install_or_upgrade 'xquartz'
 brew_cask_install_or_upgrade 'limechat'
-brew_cask_install_or_upgrade 'flux'
-brew_cask_install_or_upgrade 'evernote'
 brew_cask_install_or_upgrade 'skitch'
 brew_cask_install_or_upgrade '1password'
 brew_cask_install_or_upgrade 'sublime-text'
-brew_cask_install_or_upgrade 'fluid'
-brew_cask_install_or_upgrade 'silverlight'
 brew_cask_install_or_upgrade 'vlc'
+brew_cask_install_or_upgrade 'ngrok'
 
-brew_install_or_upgrade 'autojump'
-brew_install_or_upgrade 'chromedriver'
-brew_install_or_upgrade 'elasticsearch'
-brew_install_or_upgrade 'leiningen'
-brew_install_or_upgrade 'mongodb'
-brew_install_or_upgrade 'wget'
-brew_install_or_upgrade 'tree'
-brew_install_or_upgrade 'ngrok'
-brew_install_or_upgrade 'shellcheck'
-brew_install_or_upgrade 'phantomjs'
-brew_install_or_upgrade 'cmake'
-brew_install_or_upgrade 'yarn'
-brew_install_or_upgrade 'parity'
-brew tap neovim/homebrew-neovim
-brew install neovim
+brew bundle --file=- <<EOF
+tap 'neovim/homebrew-neovim'
+brew 'autojump'
+brew 'chromedriver'
+brew 'wget'
+brew 'tree'
+brew 'shellcheck'
+brew 'phantomjs'
+brew 'cmake'
+brew 'yarn'
+brew 'parity'
+brew 'neovim'
+EOF
 
 mkdir -p ~/Work
-mkdir -p ~/Work/apps
-mkdir -p ~/Work/archived
-mkdir -p ~/Work/internal
-mkdir -p ~/Work/open-source
-mkdir -p ~/Work/presentations
-mkdir -p ~/Work/research
-mkdir -p ~/gitrepos
+touch ~/.zshrc.private
 
 git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '.dotfiles'
 
 ln -sf ~/.dotfiles/rcrc ~/.rcrc
-ln -sf ~/.vim ~/.nvim
-ln -sf ~/.vimrc ~/.nvimrc
+ln -sf ~/.vim ~/nvim
+ln -sf ~/.vimrc ~/nvim/init.vim
 
 rcup -v
 
@@ -100,23 +87,17 @@ curl -fLo ~/.vim/autoload/plug.vim \
 
 sudo easy_install pip
 sudo chown -R $USER /Library/Python/2.7/site-packages
-sudo chown -R $USER /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7
 pip install neovim
 
 gem_install_or_update 'rails'
 gem_install_or_update 'suspenders'
-gem_install_or_update 'tmuxinator'
-gem_install_or_update 'cocoapods' --user-install
+gem_install_or_update 'cocoapods'
 
 npm install -g npm
 
 defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-
-brew_install_or_upgrade 'emacs'
-# Emacs Prelude
-curl -L http://git.io/epre | sh
