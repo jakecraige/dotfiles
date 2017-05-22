@@ -2,7 +2,7 @@
 
 export EDITOR="vim"
 export SHELL="/bin/zsh"
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/.bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export ZSH=$HOME/.dotfiles/oh-my-zsh

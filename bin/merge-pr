@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+
+CURRENT_BRANCH="$(git symbolic-ref HEAD --short)"
+BRANCH_NAME=${1-$CURRENT_BRANCH}
+
+read -p "Are you sure you want to merge $BRANCH_NAME? (y/n): " -n 1 -r
+echo # move to a new line
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+  echo "Aborting merge."
+  exit 1
+fi
+
+git fetch
+
+read -p "Do you want to do an interactive rebase against master? (y/n): " -n 1 -r
+echo # move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  git checkout "$BRANCH_NAME"
+  git rebase -i origin/master
+  git push --force-with-lease
+fi
+
+echo "Merging into master..."
+git checkout master
+git pull
+git merge --ff-only "$BRANCH_NAME"
+git push
+
+echo "Cleaning up branches..."
+git branch -d "$BRANCH_NAME"
+git push -f origin ":$BRANCH_NAME"
+
+echo "Done."
