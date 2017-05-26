@@ -352,29 +352,38 @@
     " TagBar {{{
         let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
     " }}}
-    " Neomake {{{
-        " https://github.com/eslint/eslint/issues/1238#issuecomment-139471958
-        let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
-        if matchstr(local_eslint, "^\/\\w") == ''
-          let local_eslint = getcwd() . "/" . local_eslint
-        endif
-        if executable(local_eslint)
-          let g:neomake_javascript_eslint_exe = local_eslint
-          let g:neomake_jsx_eslint_exe = local_eslint
-        endif
-        let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-        if matchstr(local_flow, "^\/\\w") == ''
-          let local_flow = getcwd() . "/" . local_flow
-        endif
-        if executable(local_flow)
-          let g:neomake_javascript_flow_exe = local_flow
-          let g:neomake_jsx_flow_exe = local_flow
-        endif
-
-        let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-        let g:neomake_jsx_enabled_makers = ['eslint', 'flow']
-        autocmd! BufReadPost * Neomake
-        autocmd! BufWritePost * Neomake
+    " Ale {{{
+        let g:ale_linters = {
+        \   'javascript': ['eslint', 'flow'],
+        \}
+    " }}}
+    " asynccomplete {{{
+        call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+            \ 'name': 'buffer',
+            \ 'whitelist': ['*'],
+            \ 'blacklist': ['go'],
+            \ 'completor': function('asyncomplete#sources#buffer#completor'),
+            \ }))
+        call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+            \ 'name': 'neosnippet',
+            \ 'whitelist': ['*'],
+            \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+            \ }))
+         au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+            \ 'name': 'flow',
+            \ 'whitelist': ['javascript', 'javascript.jsx'],
+            \ 'priority': 1,
+            \ 'completor': function('asyncomplete#sources#flow#completor'),
+            \ 'config': {
+            \    'prefer_local': 1,
+            \  },
+            \ }))
+        call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+            \ 'name': 'tscompletejob',
+            \ 'whitelist': ['typescript'],
+            \ 'priority': 1,
+            \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+            \ }))
     " }}}
     " Mustache/Handlebars {{{
       let g:mustache_abbreviations = 1
@@ -459,6 +468,7 @@
   iab relatnoship relationship
   iab desposit deposit
   iab desposits deposits
+  iab Blurbird Bluebird
 " }}}
 
 " colorscheme seoul256
