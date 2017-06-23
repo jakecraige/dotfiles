@@ -12,6 +12,7 @@ export DISABLE_AUTO_TITLE="true"
 export ANDROID_SDK_ROOT="$(brew --prefix)/share/android-sdk"
 export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
 export PATH="$PATH:`yarn global bin`"
+export PATH="$HOME/.cargo/bin:$PATH"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
 # Temp attempt to fix listen issue https://github.com/rails/rails/issues/26158
 export DISABLE_SPRING=1

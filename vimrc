@@ -29,6 +29,11 @@
           au!
           au Filetype json setlocal foldmethod=syntax
         augroup END
+
+        augroup fmt
+          autocmd!
+          autocmd BufWritePre *.js,*.ts,*.tsx Neoformat prettier
+        augroup END
     " }}}
     " Ruby {{{
         augroup ft_ruby
@@ -353,6 +358,8 @@
         let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
     " }}}
     " Ale {{{
+        let g:ale_lint_on_insert_leave = 1
+        let g:ale_lint_on_text_changed = 'never'
         let g:ale_linters = {
         \   'javascript': ['eslint', 'flow'],
         \}
