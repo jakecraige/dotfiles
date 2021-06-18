@@ -1,0 +1,8 @@
+#!/bin/bash
+# WSL 'git' wrapper, save as /usr/local/bin/git and chmod a+x
+
+if [ "${PWD:0:5}" = "/mnt/" ]; then
+  /mnt/c/Program\ Files/Git/bin/git.exe "$@"
+else
+  /usr/bin/git "$@"
+fi

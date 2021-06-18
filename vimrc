@@ -11,16 +11,9 @@
 
   filetype on
   filetype plugin indent on
-
-  call dirsettings#Install()
-
 " }}}
 " Language Specific {{{
-    " keep you honest and without tabs
-    " autocmd BufWritePre * :retab
     " Javascript {{{
-        let g:jsx_ext_required = 0
-        let g:javascript_plugin_flow = 1
         augroup ft_javascript
           au!
           au Filetype javascript setlocal foldmethod=syntax
@@ -28,11 +21,6 @@
         augroup ft_json
           au!
           au Filetype json setlocal foldmethod=syntax
-        augroup END
-
-        augroup fmt
-          autocmd!
-          autocmd BufWritePre *.js,*.ts,*.tsx Neoformat prettier
         augroup END
     " }}}
     " Ruby {{{
@@ -59,9 +47,10 @@
 " }}}
 " General make life easy settings {{{
       let mapleader = ","
-      set clipboard=unnamed      " Makes tmux c/p work
+      " TODO: this may need linux vs wsl2 rules 
+      " set clipboard=unnamedplus      " Makes tmux c/p work
       set noesckeys
-      set mouse=a
+      set mouse=""
       set mousehide
       set nocompatible
       set autoindent
@@ -101,21 +90,14 @@
 
 " }}}
 " Make Life Easy Bindings {{{
-      " S in normal mode to split line, sister to J
-      nnoremap S i<cr><esc><right>
-
-      "For when you forget to sudo.. Really Write the file.
-        cmap w!! w !sudo tee % >/dev/null
-
-      "Adjust viewports to the same size
-        map <Leader>= <C-w>=
-
-      "Rehighlight pasted text
-        nnoremap <leader>v V`]
-
-      "0 now goes to first char in line instead of blank"
-        nnoremap 0 0^
-
+    " S in normal mode to split line, sister to J
+    nnoremap S i<cr><esc><right>
+    "For when you forget to sudo.. Really Write the file.
+    cmap w!! w !sudo tee % >/dev/null
+    "0 now goes to first char in line instead of blank"
+    nnoremap 0 0^
+    " duplicate selected content {{{
+    map <Leader>d y'>p
 " }}}
 " Folding {{{
     set foldlevelstart=20
@@ -148,22 +130,10 @@
 
 " }}}
 " Colorscheme, Gui, Font {{{
-
-    "Status line with fugitive git integration
     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
-    if has('gui_running')
-      " removes scrollbar and toolbar"
-      set guioptions+=lrb
-      set guioptions-=lrb           " Remove the toolbar
-      set guioptions-=T
-      set lines=40                " 40 lines of text instead of 24
-    else
-      set t_Co=256
-    endif
+    set t_Co=256
 
     " Font , Text, Tabs {{{
-
         " Auto format comment blocks
         set comments=sl:/*,mb:*,elx:*/
 
@@ -173,16 +143,13 @@
           set softtabstop=2
           set expandtab
         "Text wrapping
-          set wrap
+          set nowrap
           set textwidth=80
           set formatoptions=qrn1
           set colorcolumn=+1
-
     " }}}
-
 " }}}
 " File Editing {{{
-
   " Edit another file in the same directory as the current file
   " uses expression to extract path from current file's path
     map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
@@ -227,14 +194,6 @@
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 
-    if has('nvim')
-      tnoremap <C-h> <C-\><C-n><C-w>h
-      tnoremap <C-j> <C-\><C-n><C-w>j
-      tnoremap <C-k> <C-\><C-n><C-w>k
-      tnoremap <C-l> <C-\><C-n><C-w>l
-      tnoremap <Esc> <C-\><C-n>
-    endif
-
     "Split window size mapping
     nnoremap <S-Up> :resize +5<CR>
     nnoremap <S-Down> :resize -5<CR>
@@ -249,17 +208,13 @@
         execute "set <xRight>=\e[1;*C"
         execute "set <xLeft>=\e[1;*D"
     endif
-
 " }}}
 " Searching {{{
-
-      "Fix broken searching by enabling regular regex I think?
-      nnoremap / /\v
-      vnoremap / /\v
       set ignorecase
       set smartcase
       set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
       set hlsearch
+      set wildignore+=*/.hg/*,*/.svn/*,*/Assets/*
 
       "Undo highlignted searches
       nnoremap <leader><space> :noh<cr>
@@ -276,37 +231,16 @@
       " Don't move on *
       nnoremap * *<c-o>
 
-      " Visual Mode */# from Scrooloose
-      " Lets you use * in visual mode
-
-      function! s:VSetSearch()
-        let temp = @@
-        norm! gvy
-        let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-        let @@ = temp
-      endfunction
-
-      vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-      vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
-" }}}
-" Git Setup {{{
-
-    map <Leader>gac :Gcommit -m -a ""<LEFT>
-    map <Leader>gc :Gcommit -m ""<LEFT>
-    map <Leader>gs :Gstatus<CR>
-    map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
-
+      " Grep with ag and hit K on a word to search
+      nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+      set grepprg=ag\ --nogroup\ --nocolor
 " }}}
 " duplicate selected content {{{
-
   map <Leader>d y'>p
-
 " }}}
 " Backups {{{
-
   set backup                        " enable backups
-  set noswapfile                    " it's 2013, Vim.
+  set noswapfile                    " it's 2013, Vim. (LOL at this comment in 2021)
 
   set undodir=~/.vim/tmp/undo//     " undo files
   set backupdir=~/.vim/tmp/backup// " backups
@@ -325,14 +259,10 @@
 
 " }}}
 " Plugins {{{
-    " CtrlP {{{
-      set wildignore+=*/.hg/*,*/.svn/*,*/Assets/*
-      nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-      set grepprg=ag\ --nogroup\ --nocolor
-
-      let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn))|(Assets|node_modules|dist|tmp|platforms|bower_components|cassettes|coverage)$'
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-      let g:ctrlp_use_caching = 0
+    " Fzf {{{
+      let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'relative': v:true, 'yoffset': 1 } }
+      " Map Ctrl + p to open fuzzy find (FZF)
+      nnoremap <C-p> :FZF<cr>
     " }}}
     " NERDTree {{{
         map <C-e> :NERDTreeToggle<CR>
@@ -347,53 +277,11 @@
         let NERDChristmasTree = 1
         let NERDTreeChDirMode = 2
         let NERDTreeMapJumpFirstChild = 'gK'
-    " }}}
-    " Sparkup {{{
-      let g:sparkupExecuteMapping = '<leader>h'
+        " Add space when commenting
+        let g:NERDSpaceDelims = 1
     " }}}
     " Ag {{{
       let g:ag_prg="ag --column --smart-case --ignore tmp --ignore node_modules --ignore cordova --ignore dist --ignore vendor --ignore bower_components --ignore log --ignore coverage"
-    " }}}
-    " TagBar {{{
-        let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-    " }}}
-    " Ale {{{
-        let g:ale_lint_on_insert_leave = 1
-        let g:ale_lint_on_text_changed = 'never'
-        let g:ale_linters = {
-        \   'javascript': ['eslint', 'flow'],
-        \}
-    " }}}
-    " asynccomplete {{{
-        call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-            \ 'name': 'buffer',
-            \ 'whitelist': ['*'],
-            \ 'blacklist': ['go'],
-            \ 'completor': function('asyncomplete#sources#buffer#completor'),
-            \ }))
-        call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-            \ 'name': 'neosnippet',
-            \ 'whitelist': ['*'],
-            \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-            \ }))
-         au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-            \ 'name': 'flow',
-            \ 'whitelist': ['javascript', 'javascript.jsx'],
-            \ 'priority': 1,
-            \ 'completor': function('asyncomplete#sources#flow#completor'),
-            \ 'config': {
-            \    'prefer_local': 1,
-            \  },
-            \ }))
-        call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
-            \ 'name': 'tscompletejob',
-            \ 'whitelist': ['typescript'],
-            \ 'priority': 1,
-            \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
-            \ }))
-    " }}}
-    " Mustache/Handlebars {{{
-      let g:mustache_abbreviations = 1
     " }}}
     " vim-rspec {{{
       autocmd Filetype ruby map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -401,21 +289,6 @@
       autocmd Filetype ruby map <Leader>l :call RunLastSpec()<CR>
       autocmd Filetype ruby map <Leader>a :call RunAllSpecs()<CR>
       let g:rspec_command = "Dispatch bundle exec rspec {spec}"
-    " }}}
-    " vim-flow {{{
-      let g:flow#enable = 0
-      " let g:flow#autoclose = 1
-      " if executable(local_flow)
-        " let g:flow#flowpath = local_flow
-      " endif
-    " }}}
-    " vim-ex_test {{{
-    "
-      autocmd Filetype elixir map <Leader>t :call RunCurrentTestFile()<CR>
-      autocmd Filetype elixir map <Leader>s :call RunNearestTest()<CR>
-      autocmd Filetype elixir map <Leader>l :call RunLastTest()<CR>
-      autocmd Filetype elixir map <Leader>a :call RunAllTests()<CR>
-      let g:ex_test_command = "Dispatch mix test {test}"
     " }}}
     " Airline {{{
       let g:airline_theme="base16"
@@ -425,17 +298,6 @@
       let g:airline_section_x = ""
       let g:airline_section_z = "%l:%v"
       let g:airline_section_y = ""
-    " }}}
-    " Xcodebuild {{{
-      let g:xcode_runner_command = 'Dispatch {cmd}'
-    " }}}
-    " Deoplete {{{
-      let g:deoplete#enable_at_startup = 1
-    " }}}
-    " NeoSnippet {{{
-      imap <C-k> <Plug>(neosnippet_expand_or_jump)
-      smap <C-k> <Plug>(neosnippet_expand_or_jump)
-      xmap <C-k> <Plug>(neosnippet_expand_target)
     " }}}
 " }}}
 " Uncategorized {{{
@@ -478,16 +340,10 @@
   iab Blurbird Bluebird
 " }}}
 
-" colorscheme seoul256
-" set background=dark
-colorscheme bubblegum-256-light
-set background=light
-
-vmap <Leader>e :call EvalClojure()<CR>
-function! EvalClojure()
-  let selection = s:get_visual_selection()
-  call VimuxRunCommand(selection)
-endfunction
+colorscheme seoul256
+set background=dark
+" colorscheme bubblegum-256-light
+" set background=light
 
 function! s:get_visual_selection()
   " Why is this not a built-in Vim script function?!
@@ -508,14 +364,10 @@ nnoremap <leader>f cit<cr><esc>O<esc>pj=2k
 
 let maplocalleader = "\\"
 
-nmap cpl cp<S-V><CR>
-nmap cpf ggcpG<C-o><C-o>
-
-au FileType clojure let b:loaded_delimitMate = 0
-
+" This temporarily highlights the selection when you press next, since it uses
+" sleep you want to keep the time pretty low
 nnoremap <silent> n n:call HLNext(0.15)<cr>
 nnoremap <silent> N n:call HLNext(0.15)<cr>
-
 function! HLNext (blinktime)
   set invcursorline
   redraw
@@ -524,43 +376,12 @@ function! HLNext (blinktime)
   redraw
 endfunction
 
-" Add space when commenting
-let g:NERDSpaceDelims = 1
-
-nmap <Leader>hn <Plug>GitGutterNextHunk
-nmap <Leader>hp <Plug>GitGutterPrevHun
-nmap <Leader>hs <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterRevertHunk
-" hunk diff
-nmap <Leader>hd <Plug>GitGutterPreviewHunk
-
-set nowrap
-set gdefault " replace all instances on a line in search/replace
-
-autocmd Filetype javascript map <Leader>t :call RunCurrentSpecFile()<CR>
-autocmd Filetype javascript map <Leader>s :call RunNearestSpec()<CR>
-autocmd Filetype javascript map <Leader>l :call RunLastSpec()<CR>
-autocmd Filetype javascript map <Leader>a :call RunAllSpecs()<CR>
-
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.mm set filetype=objcpp
 
-autocmd FileType markdown setlocal spell
 autocmd FileType markdown setlocal textwidth=80
 
-let g:mocha_js_command = "Dispatch mocha {spec}"
-
 nmap <Leader>D :Dispatch
-
-" Fix escape not working correctly in neovim
-" https://github.com/neovim/neovim/issues/2051#issuecomment-75767873
-set timeout
-set timeoutlen=750
-set ttimeoutlen=250
-if !has('nvim')
-  set ttimeout
-  set ttimeoutlen=0
-endif
 
 set tags=.git/tags,./tags
 
@@ -577,14 +398,13 @@ let g:runfile_by_type    = {
   \ 'lhaskell': '!cabal exec -- ghci -Wall %'
   \ }
 
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
 
-if has('nvim')
-  tnoremap <A-h> <C-\><C-n><C-w>h
-  tnoremap <A-j> <C-\><C-n><C-w>j
-  tnoremap <A-k> <C-\><C-n><C-w>k
-  tnoremap <A-l> <C-\><C-n><C-w>l
-  nnoremap <A-h> <C-w>h
-  nnoremap <A-j> <C-w>j
-  nnoremap <A-k> <C-w>k
-  nnoremap <A-l> <C-w>l
+    set clipboard=unnamed
 endif

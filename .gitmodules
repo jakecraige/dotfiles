@@ -10,3 +10,15 @@
 [submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
 	path = zsh_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "asdf"]
+	path = asdf
+	url = https://github.com/asdf-vm/asdf.git
+[submodule "pwndbg"]
+	path = pwndbg
+	url = https://github.com/pwndbg/pwndbg
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "autojump"]
+	path = autojump
+	url = git@github.com:wting/autojump.git

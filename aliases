@@ -1,10 +1,6 @@
-alias nom='rm -rf node_modules && npm cache clean && npm install'
-alias cljsbuild="lein trampoline cljsbuild $@"
-
 # -------------------------------------------------------------------
 # General
 # -------------------------------------------------------------------
-
 alias c='clear'
 
 # -------------------------------------------------------------------
@@ -13,8 +9,6 @@ alias c='clear'
 alias tma="tmux attach -t"
 alias tmn="tmux new -s"
 alias tml="tmux ls"
-alias tmo="tmuxinator open"
-alias tms="tmuxinator start"
 
 # -------------------------------------------------------------------
 # Ruby stuff
@@ -29,13 +23,8 @@ alias tial='tail'
 # -------------------------------------------------------------------
 # directory movement
 # -------------------------------------------------------------------
-alias lh='ls -d .*' # show hidden files/directories only
-alias l='ls -al'
+alias l='ls -la'
 alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
-alias ll='ls -GFhl' # Same as above, but in long listing format
-alias dot='cd ~/Development/dotfiles/'
-alias work='cd ~/Work/'
-alias dev='cd ~/Development/'
 
 # -------------------------------------------------------------------
 # Mac only
@@ -53,9 +42,9 @@ alias ga='git add'
 alias gpl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --graph"
 alias gs='git status'
 alias gm='git commit -m'
-alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort -nr'
 # gituntrackdir directory_name
 alias gituntrackdir="git rm -r --cached "
+unalias gf # oh-my-zsh has this but we want to use tomnomnom/gf
 
 # -------------------------------------------------------------------
 # Don't correct these commands!
