@@ -49,7 +49,7 @@ env-setup() {
     git vim zsh wget mlocate openssh man tree cmake tmux the_silver_searcher
   sudo updatedb # setup locate db
 
-  git clone https://github.com/jakecraige/dotfiles ~/.dotfiles
+  git clone git@github.com:jakecraige/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
   echo 'export TARGET=127.0.0.1' > ~/.zshrc.private
   git submodule update --init --recursive
