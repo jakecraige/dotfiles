@@ -1,0 +1,127 @@
+#!/usr/bin/env zsh
+
+set-target() {
+  target="$1"
+  sed -i "s/TARGET=.*/TARGET=$target/" ~/.zshrc.private
+  source ~/.zshrc
+}
+
+scan-target() {
+  # -p- for all ports
+  nmap -sC -sV $1 $TARGET | tee nmap.txt
+}
+
+scan-target-udp() {
+  nmap -sU $1 $TARGET | tee nmap-udp.txt
+}
+
+scan-common() {
+  gobuster dir -w "/mnt/d/Hacking Resources/SecLists-master/Discovery/Web-Content/common.txt" -u "http://$TARGET" | tee buster-common.txt
+}
+
+get-ssl-cert() {
+  echo | openssl s_client -showcerts -servername gnupg.org -connect "$1" 2>/dev/null | openssl x509 -inform pem -noout -text
+}
+
+HAX_NOTES_DIR=./notes
+
+hax-new-note() {
+  datestamp=$(date +"%F")
+  tempfile="$(mktemp -t note.XXX).md"
+  $EDITOR "$tempfile"
+  mkdir -p "$HAX_NOTES_DIR"
+  cat "$tempfile" >> "$HAX_NOTES_DIR/$datestamp.md"
+  echo >> "$HAX_NOTES_DIR/$datestamp.md"
+}
+
+hax-find-note() {
+  pattern="$1"
+  if [ -z "$pattern" ]; then
+    echo "pattern expected" >&2
+    return 1
+  fi
+
+  note=$(ag --nogroup "$pattern" "$HAX_NOTES_DIR" | sed "s|$HAX_NOTES_DIR||" | selecta)
+  note_file=$(echo "$note" | cut -d : -f 1)
+  note_file_number=$(echo "$note" | cut -d : -f 2)
+  $EDITOR "+$note_file_number" "$HAX_NOTES_DIR/$note_file"
+}
+
+hax-this-week() {
+  days=(sunday monday tuesday wednesday thursday friday saturday)
+  tempfile="$(mktemp -t note).md"
+
+  for day in $days; do
+    last_week_day=$(date -v "$day" +"%F")
+    file="$HAX_NOTES_DIR/$last_week_day.md"
+    if [[ -a $file ]]; then
+      echo "# $last_week_day\n" >> "$tempfile"
+      cat "$file" >> "$tempfile"
+    fi
+  done
+
+  less -ci "$tempfile"
+}
+
+hax-last-week() {
+  days=(sunday monday tuesday wednesday thursday friday saturday)
+  tempfile="$(mktemp -t note).md"
+
+  for day in $days; do
+    last_week_day=$(date -v "$day" -v -7d +"%F")
+    file="$HAX_NOTES_DIR/$last_week_day.md"
+    if [[ -a $file ]]; then
+      echo "# $last_week_day\n" >> "$tempfile"
+      cat "$file" >> "$tempfile"
+    fi
+  done
+
+  less -ci "$tempfile"
+}
+
+hax-edit() {
+  latest=$(ls "$HAX_NOTES_DIR/"*.md | tail -1)
+
+  if [[ -a $latest ]]; then
+    $EDITOR $latest
+  else
+    return 1
+  fi
+}
+
+haxnote() {
+  case "$1" in
+    ("edit")
+      hax-edit "${@:2}"
+      ;;
+    ("new")
+      hax-new-note "${@:2}"
+      ;;
+    ("find")
+      hax-find-note "${@:2}"
+      ;;
+    ("last-week")
+      hax-last-week "${@:2}"
+      ;;
+    ("this-week")
+      hax-this-week "${@:2}"
+      ;;
+    (*)
+      echo "command expected: edit, new, find, last-week, this-week" >&2
+      return 1
+      ;;
+  esac
+}
+
+_haxnote-context-completion() {
+  completions="$(ls "$NOTES_DIR")"
+  reply=("${(ps:\n:)completions}")
+}
+
+compctl -k '(edit find last-week new this-week)' \
+  -x 'c[-1,find]' -k '()' \
+  - 'c[-1,edit]' -K _haxnote-context-completion \
+  - 'c[-1,new]' -K _-haxnote-context-completion \
+  - 'c[-1,last-week]' -K _haxnote-context-completion \
+  - 'c[-1,this-week]' -K _haxnote-context-completion \
+  -- haxnote

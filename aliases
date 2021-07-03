@@ -1,69 +1,25 @@
-# -------------------------------------------------------------------
-# General
-# -------------------------------------------------------------------
 alias c='clear'
-
-# -------------------------------------------------------------------
-# Tmux
-# -------------------------------------------------------------------
+alias reload='exec /bin/zsh'
+alias r='reload'
 alias tma="tmux attach -t"
 alias tmn="tmux new -s"
 alias tml="tmux ls"
-
-# -------------------------------------------------------------------
-# Ruby stuff
-# -------------------------------------------------------------------
 alias rake="noglob rake" # necessary to make rake work inside of zsh
 alias be='bundle exec'
 alias rials='rails'
 alias raisl='rails'
 alias rs='rails s'
 alias tial='tail'
-
-# -------------------------------------------------------------------
-# directory movement
-# -------------------------------------------------------------------
 alias l='ls -la'
 alias ls='ls -GFh' # Colorize output, add file type indicator, and put sizes in human readable format
-
-# -------------------------------------------------------------------
-# Mac only
-# -------------------------------------------------------------------
-alias ql='qlmanage -p 2>/dev/null' # OS X Quick Look
-alias find_port='lsof -i ' # what is running on port, find_port :3000
-
-# -------------------------------------------------------------------
-# Git
-# -------------------------------------------------------------------
-# useful after you have deleted some files and didn't gitrm them. this will
-# stage them for you
-alias gitclean='git ls-files --deleted -z | xargs -0 git rm'
+alias gitclean='git ls-files --deleted -z | xargs -0 git rm' # useful after you have deleted some files and didn't gitrm them. this will stage them for you
 alias ga='git add'
 alias gpl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --graph"
 alias gs='git status'
 alias gm='git commit -m'
-# gituntrackdir directory_name
-alias gituntrackdir="git rm -r --cached "
+alias gituntrackdir="git rm -r --cached " # usage: gituntrackdir directory_name
 unalias gf # oh-my-zsh has this but we want to use tomnomnom/gf
-
-# -------------------------------------------------------------------
-# Don't correct these commands!
-# -------------------------------------------------------------------
-alias spring='nocorrect spring'
-alias ag='nocorrect ag'
-# alias rspec='nocorrect rspec'
-
-# curiosities 
-# gsh shows the number of commits for the current repos for all developers
-alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
-
-# gu shows a list of all developers and the number of commits they've made
-alias gu="git shortlog | grep -E '^[^ ]'"
-
-# list out your computers local ip address
-alias myip="ifconfig | ag 'inet (\d+.*) netmask .* broadcast'"
-alias fuxcode="rm -rf ~/Library/Developer/Xcode/DerivedData/"
-alias openxp="open *.xcodeproj"
-alias openxc="open *.xcworkspace"
-
-alias chrome="/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias myip="ifconfig | ag 'inet (\d+.*) netmask .* broadcast'" # list out your computer's local ip address
+alias spring='nocorrect spring' # Don't correct these commands (zsh)
+alias ag='nocorrect ag' # Don't correct these commands (zsh)
+alias ql='qlmanage -p 2>/dev/null' # OS X Quick Look (Mac Only obvi)
