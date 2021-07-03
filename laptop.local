@@ -1,5 +1,5 @@
 # BIGTODO: I need to update this to have a linux compatible setup...really just
-# need to bash script it from scratch. setup.sh is a start at it
+# need to bash script it from scratch. scripts/setup.sh is a start at it
 
 
 git_clone_or_pull() {
@@ -80,9 +80,6 @@ rcup -v
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-sudo easy_install pip
-sudo chown -R $USER /Library/Python/2.7/site-packages
 
 defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 
