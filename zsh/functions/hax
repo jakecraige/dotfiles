@@ -16,7 +16,7 @@ scan-target-udp() {
 }
 
 scan-common() {
-  gobuster dir -w "/mnt/d/Hacking Resources/SecLists-master/Discovery/Web-Content/common.txt" -u "http://$TARGET" | tee buster-common.txt
+  ffuf -w "/mnt/d/Hacking Resources/SecLists-master/Discovery/Web-Content/common.txt" -u "http://$TARGET/FUZZ" ${@} | tee ffuf-common.txt
 }
 
 get-ssl-cert() {

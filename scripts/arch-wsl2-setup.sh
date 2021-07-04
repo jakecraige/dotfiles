@@ -38,15 +38,13 @@ os-setup() {
   sed -i 's/%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers # revert nopasswd req
   exit
   echo "Run wsl --shutdown and restart the instance with wsl -d arch -- genie -s"
-
-  # Maybe add later if it is a valid command (I haven't tested)
-  # sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no' /etc/ssh/sshd_config
 }
 
 # this is semi-idempotent but not really
 env-setup() {
   sudo pacman -S --needed \
-    git vim zsh wget mlocate openssh man tree cmake tmux the_silver_searcher
+    git vim zsh wget mlocate openssh man tree cmake tmux the_silver_searcher \
+    dnsutils
   sudo updatedb # setup locate db
 
   git clone git@github.com:jakecraige/dotfiles.git ~/.dotfiles
@@ -100,15 +98,21 @@ hax-setup() {
   # versions I can still drop down to asdf.
   sudo pacman -S --needed php
 
+  go get -u github.com/tomnomnom/anew
   go get -u github.com/tomnomnom/gf
   go get -u github.com/tomnomnom/waybackurls
+
+  ln -f -s ~/.dotfiles/gf ~/.gf
 
   git clone git@github.com:jakecraige/hax.git ~/code/hax
   git clone git@github.com:jakecraige/ctf.git ~/code/ctf
   git clone git@github.com:jakecraige/ctf-tools.git ~/code/ctf-tools
   mkdir -p ~/code/bounty
 
-  # TODO: include seclists? Currently have installed on shared mounted drive
+  pip install pycrypto requests
+  # TODO: 
+  #   include seclists? Currently have installed on shared mounted drive
+  #   Wire up proxychains to WINHOST proxy
 
   # Post-install manual steps:
   # 1. Visit ngrok to get auth tken and run `ngrok authtoken $token`
