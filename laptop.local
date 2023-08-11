@@ -65,8 +65,6 @@ brew 'shellcheck'
 brew 'cmake'
 EOF
 
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
 touch ~/.zshrc.private
 
 git_clone_or_pull 'https://github.com/jakecraige/dotfiles' '.dotfiles'
@@ -83,6 +81,8 @@ curl -fLo ~/.vim/autoload/plug.vim \
 
 defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf plugin-add nodejs
+asdf plugin-add golang
+asdf plugin-add python
+asdf plugin-add nodejs
+asdf plugin-add rust

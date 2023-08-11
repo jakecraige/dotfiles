@@ -33,6 +33,8 @@
   # This option is sometimes a pain when dealing with win vs lin files since I do a lot in WSL2 these days.
   # autocrlf = input
   excludesfile = ~/.dotfiles/gitignore
+  # Obviously windows only
+  sshCommand = /mnt/c/Windows/System32/OpenSSH/ssh.exe
 
 [merge]
   ff = only

@@ -29,8 +29,16 @@ source "$DOT/asdf/asdf.sh"
 source "$ZSH/oh-my-zsh.sh"
 source "$HOME/.autojump/etc/profile.d/autojump.sh"
 
-export GOPATH="$(asdf env go | grep GOPATH | cut -d '=' -f 2)"
-source $GOPATH/pkg/mod/github.com/tomnomnom/gf@*/gf-completion.zsh
+# There's a script in the asdf-go plugin to do this but something is buggy
+# about it and it doesn't set the right GOPATH (an incorrect version) plus
+# it doesn't have them ready to be used in the following lines.
+local goInstallDir="$(dirname $(dirname $(dirname $(asdf which go))))"
+export GOROOT="$goInstallDir/go"
+export GOPATH="$goInstallDir/packages"
+
+if [[ -d "$GOPATH/pkg/mod/github.com/tomnomnom" ]]; then
+  source $GOPATH/pkg/mod/github.com/tomnomnom/gf@*/gf-completion.zsh
+fi
 
 export WINHOST="$(ip route | awk '/^default/{print $3}')"
 if [[ $kernel == "Linux" ]]; then

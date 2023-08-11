@@ -79,7 +79,9 @@ env-setup() {
   asdf plugin-add python
   asdf install python latest
   asdf global python $(asdf list python | cut -d ' ' -f 3)
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  asdf plugin-add rust
+  asdf install rust latest
+  asdf global rust $(asdf list rust | cut -d ' ' -f 3)
 
   cd ~/.dotfiles/autojump && ./install.py
   cd ~/.dotfiles/fzf && ./install
@@ -98,9 +100,9 @@ hax-setup() {
   # versions I can still drop down to asdf.
   sudo pacman -S --needed php
 
-  go get -u github.com/tomnomnom/anew
-  go get -u github.com/tomnomnom/gf
-  go get -u github.com/tomnomnom/waybackurls
+  go install github.com/tomnomnom/anew@latest
+  go install github.com/tomnomnom/gf@latest
+  go install github.com/tomnomnom/waybackurls@latest
 
   ln -f -s ~/.dotfiles/gf ~/.gf
 

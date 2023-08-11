@@ -10,3 +10,4 @@ tmp/**/*
 zeus.json
 *.dump
 node_modules
+core
