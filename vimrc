@@ -408,3 +408,14 @@ if executable(s:clip)
 
     set clipboard=unnamed
 endif
+
+" Wayland (Linux KDE) Copy Support
+let s:wlCopy = '/usr/bin/wl-copy'
+if executable(s:wlCopy)
+    augroup WLCopy
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:wlCopy, @0) | endif
+    augroup END
+
+    set clipboard=unnamed
+endif

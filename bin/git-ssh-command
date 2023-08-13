@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+# For WSL2 purposes and SSH keys in 1p we need to use the windows specific
+# SSH exec
+if [[ -d "/mnt/c/Windows" ]]; then
+  /mnt/c/Windows/System32/OpenSSH/ssh.exe "$@"
+else
+  ssh "$@"
+fi

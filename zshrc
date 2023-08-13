@@ -11,6 +11,7 @@ export ZSH_CUSTOM="$DOT/zsh_custom"
 export ZSH_THEME="poetic"
 export DISABLE_AUTO_TITLE="true"
 export PATH="$DOT/asdf/bin:$HOME/.asdf/shims:$PATH"
+export PATH="/snap/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
@@ -36,7 +37,7 @@ local goInstallDir="$(dirname $(dirname $(dirname $(asdf which go))))"
 export GOROOT="$goInstallDir/go"
 export GOPATH="$goInstallDir/packages"
 
-if [[ -d "$GOPATH/pkg/mod/github.com/tomnomnom" ]]; then
+if [[ -d $GOPATH/pkg/mod/github.com/tomnomnom/gf@* ]]; then
   source $GOPATH/pkg/mod/github.com/tomnomnom/gf@*/gf-completion.zsh
 fi
 
