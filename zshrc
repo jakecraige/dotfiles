@@ -41,8 +41,8 @@ if [[ -d $GOPATH/pkg/mod/github.com/tomnomnom/gf@* ]]; then
   source $GOPATH/pkg/mod/github.com/tomnomnom/gf@*/gf-completion.zsh
 fi
 
-export WINHOST="$(ip route | awk '/^default/{print $3}')"
-if [[ $kernel == "Linux" ]]; then
+if [[ -d "/mnt/c/Windows" ]]; then
+  export WINHOST="$(ip route | awk '/^default/{print $3}')"
   export DISPLAY="$WINHOST:0"
 fi
 
