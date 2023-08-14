@@ -63,6 +63,7 @@ env-setup() {
   ln -f -s ~/.dotfiles/vimrc.bundles ~/.vimrc.bundles
   ln -f -s ~/.dotfiles/tmux.conf ~/.tmux.conf
   ln -f -s ~/.dotfiles/zshrc ~/.zshrc
+  ln -f -s ~/.dotfiles/alacritty.yml ~/.alacritty.yml
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

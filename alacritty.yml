@@ -1,0 +1,57 @@
+# Options documentaiton: 
+# $ ls /usr/share/doc/alacritty/examples
+
+window:
+  padding:
+   x: 5
+   y: 5
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: Fira Code
+    style: Regular
+  bold:
+    family: Fira Code
+    style: Bold
+  italic:
+    family: Fira Code
+    style: Italic
+  bold_italic:
+    family: Fira Code
+    style: Bold Italic
+  size: 12
+draw_bold_text_with_bright_colors: true
+
+
+# Tender: https://github.com/alacritty/alacritty-theme/blob/master/themes/tender.yaml
+colors:
+  primary:
+    background: '0x282828'
+    foreground: '0xeeeeee'
+  normal:
+    black:   '0x282828'
+    red:     '0xf43753'
+    green:   '0xc9d05c'
+    yellow:  '0xffc24b'
+    blue:    '0xb3deef'
+    magenta: '0xd3b987'
+    cyan:    '0x73cef4'
+    white:   '0xeeeeee'
+  bright:
+    black:   '0x4c4c4c'
+    red:     '0xf43753'
+    green:   '0xc9d05c'
+    yellow:  '0xffc24b'
+    blue:    '0xb3deef'
+    magenta: '0xd3b987'
+    cyan:    '0x73cef4'
+    white:   '0xfeffff'
+
+selection:
+  save_to_clipboard: true
+
+live_config_reload: true

@@ -22,7 +22,7 @@ env-setup() {
   git submodule update --init --recursive
 
   sudo apt install git build-essential net-tools linux-headers-$(uname -r) xsel
-  sudo apt install snapd vim zsh curl wget openssh-server tree tmux silversearcher-ag default-jdk
+  sudo apt install snapd vim zsh curl wget openssh-server tree tmux silversearcher-ag default-jdk fonts-firacode
 
   # Dependencies needed for installing languages. Ruby and Python in particular.
   # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
@@ -39,6 +39,7 @@ env-setup() {
   ln -f -s ~/.dotfiles/vimrc ~/.vimrc
   ln -f -s ~/.dotfiles/vimrc.bundles ~/.vimrc.bundles
   ln -f -s ~/.dotfiles/zshrc ~/.zshrc
+  ln -f -s ~/.dotfiles/alacritty.yml ~/.alacritty.yml
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
