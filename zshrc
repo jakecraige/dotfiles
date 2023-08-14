@@ -37,8 +37,9 @@ local goInstallDir="$(dirname $(dirname $(dirname $(asdf which go))))"
 export GOROOT="$goInstallDir/go"
 export GOPATH="$goInstallDir/packages"
 
-if [[ -d $GOPATH/pkg/mod/github.com/tomnomnom/gf@* ]]; then
-  source $GOPATH/pkg/mod/github.com/tomnomnom/gf@*/gf-completion.zsh
+gf_completion=($GOPATH/pkg/modx/github.com/tomnomnom/gf@*/gf-completion.zsh(N))
+if [[ -f "$gf_completion" ]]; then
+  source "$gf_completion"
 fi
 
 if [[ -d "/mnt/c/Windows" ]]; then

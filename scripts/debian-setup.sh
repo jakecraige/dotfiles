@@ -22,7 +22,7 @@ env-setup() {
   git submodule update --init --recursive
 
   sudo apt install git build-essential net-tools linux-headers-$(uname -r) xsel
-  sudo apt install snapd vim zsh curl wget openssh-server tree tmux silversearcher-ag default-jdk fonts-firacode
+  sudo apt install alacritty gnupg snapd vim zsh curl wget openssh-server tree tmux fd-find silversearcher-ag default-jdk fonts-firacode
 
   # Dependencies needed for installing languages. Ruby and Python in particular.
   # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
@@ -40,6 +40,7 @@ env-setup() {
   ln -f -s ~/.dotfiles/vimrc.bundles ~/.vimrc.bundles
   ln -f -s ~/.dotfiles/zshrc ~/.zshrc
   ln -f -s ~/.dotfiles/alacritty.yml ~/.alacritty.yml
+  ln -f -s ~/.dotfiles/config/rofi/config.rasi ~/.config/rofi/config.rasi
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -64,7 +65,9 @@ env-setup() {
   cd ~/.dotfiles/fzf && ./install
   vim +PlugInstall +qall
 
-  # install tmux plugins (manual with Ctrl-A + I in tmux
+  # Need to manually install tmux plugins at some point: Ctrl-A + I in tmux
+
+  sudo apt install rofi
 
   sudo snap install code --classic
 
@@ -87,8 +90,21 @@ hax-setup() {
   git clone git@github.com:jakecraige/ctf.git ~/code/ctf
   git clone git@github.com:jakecraige/ctf-tools.git ~/code/ctf-tools
 
-  cd ~/Desktop && wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.3.2_build/ghidra_10.3.2_PUBLIC_20230711.zip
+  wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.3.2_build/ghidra_10.3.2_PUBLIC_20230711.zip
   unzip ghidra_10.3.2_PUBLIC_20230711.zip && rm ghidra_10.3.2_PUBLIC_20230711.zip
+  sudo mkdir /opt/
+  sudo mkdir ~/.local/share/applications
+  sudo mv ghidra_10.3.2_PUBLIC /opt/Ghidra
+  cat << EOF > ~/.local/share/applications/ghidra.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Version=10.3.2
+Type=Application
+Terminal=false
+Exec=/opt/Ghidra/ghidraRun
+Name=Ghidra
+Icon=/opt/Ghidra/support/ghidra.ico
+EOF
 
   pip install --upgrade pip
   pip install pycryptodome requests pwntools

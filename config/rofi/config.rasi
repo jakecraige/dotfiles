@@ -1,0 +1,16 @@
+/* Plugins: https://github.com/davatorium/rofi/wiki/User-scripts */
+configuration {
+  display-drun: "Applications";
+  display-window: "Windows";
+  drun-display-format: "{icon} {name}";
+  modi: "window,drun,filebrowser";
+  combi-modi: "window,drun,filebrowser";
+  show-icons: true;
+  window-format: "{c} {t}";
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "gruvbox-dark-soft"
