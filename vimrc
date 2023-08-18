@@ -407,15 +407,15 @@ if executable(s:clip)
     augroup END
 
     set clipboard=unnamed
-endif
+else
+  " xsel (Linux) Yank Support
+  let s:xsel = '/usr/bin/xsel'
+  if executable(s:xsel)
+      augroup WLCopy
+          autocmd!
+          autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:xsel . " -b", @0) | endif
+      augroup END
 
-" xsel (Linux) Yank Support
-let s:xsel = '/usr/bin/xsel'
-if executable(s:xsel)
-    augroup WLCopy
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:xsel . " -b", @0) | endif
-    augroup END
-
-    set clipboard=unnamed
+      set clipboard=unnamed
+  endif
 endif

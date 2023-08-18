@@ -11,3 +11,4 @@ zeus.json
 *.dump
 node_modules
 core
+.gdb_history

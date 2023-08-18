@@ -16,18 +16,23 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
 
 kernel="$(uname -s)"
-plugins=(git autojump zsh-syntax-highlighting ssh-agent asdf)
+plugins=(git zsh-syntax-highlighting)
 
 if [[ $kernel == "Darwin" ]]; then
   plugins+=(osx brew)
 fi
 
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_ed25519
+
+if [[ -f "$HOME/.ssh/id_ed25519" ]]; then
+  plugins+=ssh-agent
+  zstyle :omz:plugins:ssh-agent agent-forwarding on
+  zstyle :omz:plugins:ssh-agent identities id_ed25519
+fi
 
 source "$DOT/asdf/asdf.sh"
 source "$ZSH/oh-my-zsh.sh"
 source "$HOME/.autojump/etc/profile.d/autojump.sh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # There's a script in the asdf-go plugin to do this but something is buggy
 # about it and it doesn't set the right GOPATH (an incorrect version) plus
