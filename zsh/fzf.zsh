@@ -4,5 +4,5 @@ export FZF_DEFAULT_COMMAND='ag --files-with-matches --nocolor --hidden -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export PATH="${PATH:+${PATH}:}$HOME/.dotfiles/fzf/bin"
-source "$HOME/.dotfiles/fzf/shell/completion.zsh"
+[[ $- == *i* ]] && source "$HOME/.dotfiles/fzf/shell/completion.zsh" 2> /dev/null
 source "$HOME/.dotfiles/fzf/shell/key-bindings.zsh"

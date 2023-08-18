@@ -91,8 +91,7 @@ env-setup() {
   asdf reshim
 
   cd ~/.dotfiles/autojump && ./install.py
-  echo "Installing fzf... say yes to keybinds and autocomplete, no to updating shell config"
-  cd ~/.dotfiles/fzf && ./install --key-bindings --completion --no-update-rc --no-fish --no-bash
+  cd ~/.dotfiles/fzf && ./install --bin
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
