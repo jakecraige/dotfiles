@@ -2,7 +2,7 @@
 
 export EDITOR="vim"
 export SHELL="/bin/zsh"
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/.bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:/usr/sbin:$PATH"
 export DOT="$HOME/.dotfiles"
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -13,7 +13,6 @@ export DISABLE_AUTO_TITLE="true"
 export PATH="$DOT/asdf/bin:$HOME/.asdf/shims:$PATH"
 export PATH="/snap/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 export GPG_AGENT_INFO="$HOME/.gnupg/S.gpg-agent::1"
 
 kernel="$(uname -s)"

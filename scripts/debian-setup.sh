@@ -8,6 +8,15 @@ os-setup() {
   apt upgrade
   echo "%creez ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/creez
   chsh -s /bin/zsh creez
+  # Maybe useful: https://unix.stackexchange.com/questions/458893/vmware-on-linux-host-causes-regular-freezes#458894
+  # echo never | sudo tee /sys/kernel/mm/transparent_hugepage/defrag
+  # echo 0 | sudo tee /sys/kernel/mm/transparent_hugepage/khugepaged/defrag
+}
+
+env-setup-gui() {
+  sudo apt install alacritty fonts-firacode
+  sudo apt install rofi
+  sudo snap install code --classic
 }
 
 env-setup() {
@@ -15,14 +24,14 @@ env-setup() {
   exec /bin/zsh
 
   ssh-keygen -t ed25519 -C "git@jcraige.com"
-  # Need to add this key to Github
+  # Will need to add this key to Github before continuing
 
-  git clone https://github.com/jakecraige/dotfiles.git ~/.dotfiles
+  git clone git@github.com:jakecraige/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
   git submodule update --init --recursive
 
   sudo apt install git build-essential net-tools linux-headers-$(uname -r) xsel
-  sudo apt install alacritty gnupg snapd vim zsh curl wget openssh-server tree tmux fd-find silversearcher-ag default-jdk fonts-firacode
+  sudo apt install gnupg snapd vim zsh curl wget openssh-server tree tmux fd-find silversearcher-ag default-jdk
 
   # Dependencies needed for installing languages. Ruby and Python in particular.
   # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
@@ -65,31 +74,28 @@ env-setup() {
   cd ~/.dotfiles/fzf && ./install
   vim +PlugInstall +qall
 
-  # Need to manually install tmux plugins at some point: Ctrl-A + I in tmux
-
-  sudo apt install rofi
-
-  sudo snap install code --classic
-
+  echo "Install tmux plugins when you run it with: Ctrl-A + I"
   mkdir ~/code
 }
 
-hax-setup() {
-  sudo apt install -y jq socat nmap netcat-openbsd proxychains inetutils-telnet inetutils-ftp ffuf
-  sudo snap install ngrok metasploit
+docker-setup() {
+  # https://docs.docker.com/engine/install/debian/#install-using-the-repository
+  sudo apt update
+  sudo apt install ca-certificates curl gnupg
+  sudo install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg
+  echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt update
+  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+}
+
+hax-setup-gui() {
+  sudo apt install -y wireshark
   sudo snap install zaproxy --classic
-
-  cd ~/.dotfiles/pwndbg && ./setup.sh
-
-  go install github.com/tomnomnom/anew@latest
-  go install github.com/tomnomnom/gf@latest
-  go install github.com/tomnomnom/waybackurls@latest
-  ln -f -s ~/.dotfiles/gf ~/.gf
-
-  git clone git@github.com:jakecraige/hax.git ~/code/hax
-  git clone git@github.com:jakecraige/ctf.git ~/code/ctf
-  git clone git@github.com:jakecraige/ctf-tools.git ~/code/ctf-tools
-
   wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.3.2_build/ghidra_10.3.2_PUBLIC_20230711.zip
   unzip ghidra_10.3.2_PUBLIC_20230711.zip && rm ghidra_10.3.2_PUBLIC_20230711.zip
   sudo mkdir /opt/
@@ -105,6 +111,22 @@ Exec=/opt/Ghidra/ghidraRun
 Name=Ghidra
 Icon=/opt/Ghidra/support/ghidra.ico
 EOF
+}
+
+hax-setup() {
+  sudo apt install -y jq socat nmap netcat-openbsd proxychains inetutils-telnet inetutils-ftp ffuf strace
+  sudo snap install ngrok metasploit searchsploit
+
+  cd ~/.dotfiles/pwndbg && ./setup.sh
+
+  go install github.com/tomnomnom/anew@latest
+  go install github.com/tomnomnom/gf@latest
+  go install github.com/tomnomnom/waybackurls@latest
+  ln -f -s ~/.dotfiles/gf ~/.gf
+
+  git clone git@github.com:jakecraige/hax.git ~/code/hax
+  git clone git@github.com:jakecraige/ctf.git ~/code/ctf
+  git clone git@github.com:jakecraige/ctf-tools.git ~/code/ctf-tools
 
   pip install --upgrade pip
   pip install pycryptodome requests pwntools
@@ -124,6 +146,9 @@ case "$1" in
     env-setup "${@:2}"
     ;;
   ("hax")
+    hax-setup "${@:2}"
+    ;;
+  ("hax-gui")
     hax-setup "${@:2}"
     ;;
   (*)
