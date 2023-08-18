@@ -48,7 +48,7 @@ fi
 
 if [[ -d "/mnt/c/Windows" ]]; then
   export WINHOST="$(ip route | awk '/^default/{print $3}')"
-  export DISPLAY="$WINHOST:0"
+  # export DISPLAY="$WINHOST:0"
 fi
 
 for config in ~/.dotfiles/zsh/*; do
