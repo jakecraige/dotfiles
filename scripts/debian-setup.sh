@@ -128,6 +128,11 @@ docker-setup() {
   sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 }
 
+env-wsl2-gui() {
+  # This was needed for Firefox to show a file chooser from WSL2
+  sudo apt install xdg-desktop-portal-gtk
+}
+
 hax-setup-gui() {
   sudo apt install -y wireshark
   sudo snap install zaproxy --classic
