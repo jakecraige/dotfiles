@@ -36,11 +36,17 @@ initial-manual-setup() {
   git pull
   git submodule update --init --recursive
 
-  sudo sh -c 'cat << EOF > /etc/wsl.conf
-[boot]
-systemd=true
-EOF'
-  echo "Done. If on WSL, run 'wsl.exe --shutdown' from PowerShell to restart with systemd enabled."
+  if [[ -d "/mnt/c/Windows" ]]; then
+    sudo sh -c 'cat << EOF > /etc/wsl.conf
+  [boot]
+  systemd=true
+  EOF'
+    # https://github.com/microsoft/WSL/issues/8843#issuecomment-1459120198
+    sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
+    echo "Done.\nRun 'wsl.exe --shutdown' from PowerShell to restart with systemd enabled before continuing."
+  else
+    echo "Done."
+  fi
 }
 
 env-setup() {
@@ -64,6 +70,10 @@ env-setup() {
   # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
   sudo apt install -y libbz2-dev libreadline-dev libsqlite3-dev libffi-dev # python build
   sudo apt install -y autoconf patch libssl-dev libyaml-dev zlib1g-dev libgmp-dev libncurses5-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+
+  if [[ -d "/mnt/c/Windows" ]]; then
+    sudo apt install xdg-desktop-portal-gtk # Needed for Firefox to show a file chooser
+  fi
 
   # install commonly used languages
   # we need to source this since we aren't in zsh yet
@@ -115,6 +125,11 @@ docker-setup() {
   # Else
   #   This code runs as described here:
   #   https://docs.docker.com/engine/install/debian/#install-using-the-repository
+  if [[ -d "/mnt/c/Windows" ]]; then
+    echo "Use Docker Desktop for WSL2 instead of running in the container."
+    exit 0
+  fi
+
   sudo apt update
   sudo apt install ca-certificates curl gnupg
   sudo install -m 0755 -d /etc/apt/keyrings
@@ -126,11 +141,6 @@ docker-setup() {
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   sudo apt update
   sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-}
-
-env-wsl2-gui() {
-  # This was needed for Firefox to show a file chooser from WSL2
-  sudo apt install xdg-desktop-portal-gtk
 }
 
 hax-setup-gui() {
