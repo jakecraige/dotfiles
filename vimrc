@@ -48,7 +48,10 @@
 " General make life easy settings {{{
       let mapleader = ","
       " TODO: this may need linux vs wsl2 rules 
-      " set clipboard=unnamedplus      " Makes tmux c/p work
+      let s:uname = system("echo -n \"$(uname)\"")
+      if s:uname == "Darwin"
+        set clipboard=unnamed      " Makes tmux c/p work
+      endif
       set noesckeys
       set mouse=""
       set mousehide
